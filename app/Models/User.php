@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -58,4 +58,26 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function roles(): MorphToMany
+    {
+        return $this->morphToMany(Role::class, 'roleable')
+            ->withTimestamps();
+    }
+
+
+    public function isAdmin(): bool
+    {
+        return null !== $this->roles()->where('name', 'admin')->first();
+    }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
 }
