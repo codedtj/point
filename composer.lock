@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58ec7a5928e53b524e2c223425cf2545",
+    "content-hash": "0e2acf00896d8d7faa7524a8c7c2b1af",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -173,6 +173,62 @@
                 }
             ],
             "time": "2022-10-05T22:11:12+00:00"
+        },
+        {
+            "name": "coderello/laravel-nova-lang",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coderello/laravel-nova-lang.git",
+                "reference": "970cb5c45fb06977b42699ede34aa8ed4031583f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coderello/laravel-nova-lang/zipball/970cb5c45fb06977b42699ede34aa8ed4031583f",
+                "reference": "970cb5c45fb06977b42699ede34aa8ed4031583f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "illuminate/console": "^8.0",
+                "illuminate/events": "^8.0",
+                "illuminate/filesystem": "^8.0",
+                "laravel/nova": "~4.0",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coderello\\LaravelNovaLang\\Providers\\LaravelNovaLangServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coderello\\LaravelNovaLang\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Language support for Laravel Nova.",
+            "keywords": [
+                "lang",
+                "language",
+                "laravel",
+                "nova",
+                "support"
+            ],
+            "support": {
+                "issues": "https://github.com/coderello/laravel-nova-lang/issues",
+                "source": "https://github.com/coderello/laravel-nova-lang/tree/2.0.1"
+            },
+            "time": "2022-10-28T17:13:41+00:00"
         },
         {
             "name": "dasprid/enum",
