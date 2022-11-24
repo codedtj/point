@@ -33,3 +33,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('/point', function () {
+    return Inertia::render('Point');
+})->name('point');
