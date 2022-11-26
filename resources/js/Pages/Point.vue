@@ -21,8 +21,8 @@
         </form>
     </div>
 
-    <div class="flex mx-auto bg-gray-50">
-        <div class="w-full lg:w-3/6 overflow-y-scroll flex-none" style="height: 450px">
+    <div class="flex mx-auto bg-gray-50 grid grid-cols-1 lg:grid-cols-2">
+        <div class="w-full overflow-y-scroll flex-none z-10" style="height: 450px">
             <div class="bg-white rounded">
                 <table class="min-w-max w-full table-auto">
                     <thead>
@@ -681,7 +681,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="rounded-lg p-4 bg-emerald-500 flex flex-col w-48">
+                <div class="rounded-lg p-4 bg-red-400 flex flex-col w-48">
                     <div>
                         <h5 class="text-white text-xl font-bold leading-none">
                             Change
