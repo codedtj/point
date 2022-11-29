@@ -654,6 +654,7 @@
         </div>
 
         <div class="flex">
+<!--            Card-->
             <div class="flex h-28 gap-x-6 mx-auto px-16 mt-3">
                 <div class="rounded-lg p-4 bg-purple-700 flex flex-col w-48">
                     <div>
@@ -698,6 +699,14 @@
                 </div>
 
             </div>
+<!--            Card-->
+
+<!--            History-->
+            <div>
+
+            </div>
+<!--            History-->
+
         </div>
     </div>
 </template>
