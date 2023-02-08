@@ -38,6 +38,26 @@ class Item extends Resource
     ];
 
     /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label(): string
+    {
+        return __('Items');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel(): string
+    {
+        return __('Item');
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param NovaRequest $request
@@ -46,12 +66,12 @@ class Item extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make('Title')->maxlength(200)->sortable(),
-            Text::make('Code')->maxlength(50)->sortable(),
-            Text::make('Description')->nullable(),
-            Number::make('Quantity')->step(0.001)->min(0)->hideWhenUpdating(),
-            Select::make('Unit')->options(function() {
+            ID::make()->sortable()->hide(),
+            Text::make(__('Item title'), 'title')->maxlength(200)->sortable(),
+            Text::make(__('Item code'), 'code')->maxlength(50)->sortable(),
+            Text::make(__('Description'), 'description')->nullable(),
+            Number::make(__('Quantity'), 'quantity')->step(0.001)->min(0)->hideWhenUpdating(),
+            Select::make(__('Item units'), 'unit')->options(function() {
                 $options = [];
 
                 foreach (Unit::cases() as $case) {
