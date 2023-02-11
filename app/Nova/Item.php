@@ -75,11 +75,11 @@ class Item extends Resource
                 $options = [];
 
                 foreach (Unit::cases() as $case) {
-                    $options[$case->value] = $case->name;
+                    $options[$case->value] = __($case->name);
                 }
 
                 return $options;
-            })
+            })->displayUsingLabels()
         ];
     }
 
