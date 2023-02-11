@@ -70,7 +70,6 @@ class Item extends Resource
             Text::make(__('Item title'), 'title')->maxlength(200)->sortable(),
             Text::make(__('Item code'), 'code')->maxlength(50)->sortable(),
             Text::make(__('Description'), 'description')->nullable(),
-            Number::make(__('Quantity'), 'quantity')->step(0.001)->min(0)->hideWhenUpdating(),
             Select::make(__('Item units'), 'unit')->options(function() {
                 $options = [];
 

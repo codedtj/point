@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 200);
-            $table->string('code', 50);
-            $table->double('quantity');
+            $table->string('title', 200)->index()->unique();
+            $table->string('code', 50)->index();
             $table->string('unit', 3);
             $table->longText('description')->nullable();
             $table->timestamps();
