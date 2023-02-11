@@ -388,7 +388,7 @@
     "Value": "Значение",
     "Add row": "Добавить строку",
     "Attach :resource": "Прикрепить :resource",
-    "Create :resource": "Создать :resource",
+    "Create :resource": ":resource - добавление",
     "Choose :resource": "Выберите :resource",
     "New :resource": "Новый :resource",
     "Edit :resource": "Изменить :resource",
@@ -425,7 +425,7 @@
     "Quarter To Date": "С начала квартала",
     "Year To Date": "С начала года",
     "Customize": "Настроить",
-    "Update :resource: :title": "Обновление :resource: :title",
+    "Update :resource: :title": ":resource :title - редактирование",
     "Update attached :resource: :title": "Обновление прикреплённый :resource: :title",
     ":resource Details: :title": "Детали :resource: :title",
     "The HasOne relationship has already been filled.": "Отношение один к одному уже заполнено.",
@@ -452,5 +452,11 @@
     "Quantity": "Количество",
     "Item units": "Единицы",
     "Item": "Товар",
-    "Items": "Товары"
+    "Items": "Товары",
+    "Full name": "ФИО",
+    "Email": "Эл. почта",
+    "Users": "Пользователи",
+    "User": "Пользователь",
+    "Create User": "Создать Пользователя",
+    "Update User": "Обновить Пользователя"
 }
