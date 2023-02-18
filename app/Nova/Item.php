@@ -67,7 +67,7 @@ class Item extends Resource
     {
         return [
             ID::make()->sortable()->hide(),
-            Text::make(__('Item title'), 'title')->maxlength(200)->sortable(),
+            Text::make(__('Item title'), 'title')->maxlength(100)->sortable(),
             Text::make(__('Item code'), 'code')->maxlength(50)->sortable(),
             Text::make(__('Description'), 'description')->nullable(),
             Select::make(__('Item units'), 'unit')->options(function() {
