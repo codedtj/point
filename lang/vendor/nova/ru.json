@@ -467,11 +467,13 @@
     "Piece": "шт",
     "Point": "Точка",
     "Points": "Точки",
-    "Create Point": "Добвить Точку",
+    "Create Point": "Создать Точку",
     "Update Point": "Обновить Точку",
     "Name": "Имя",
     "Code": "Код",
     "Number": "Номер",
     "Receipt Voucher": "Приходный ордер",
-    "Receipt Vouchers": "Приходные ордера"
+    "Receipt Vouchers": "Приходные ордера",
+    "Create Receipt Voucher": "Создать Приходный Ордер",
+    "Update Receipt Voucher": "Update Receipt Voucher"
 }
