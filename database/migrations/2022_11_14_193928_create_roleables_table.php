@@ -14,11 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('roleables', function (Blueprint $table) {
-            $table->id();
+            $table->general();
             $table->foreignUuid('roleable_id');
             $table->string('roleable_type');
             $table->foreignUuid('role_id');
-            $table->timestamps();
         });
     }
 

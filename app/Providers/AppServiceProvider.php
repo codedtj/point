@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blueprint::macro('userstamps', function (){
+            $this->foreignUuid('created_by')->nullable();
+            $this->foreignUuid('updated_by')->nullable();
+            $this->foreignUuid('deleted_by')->nullable();
+        });
+
+        Blueprint::macro('general', function (){
+            $this->uuid('id')->primary();
+            $this->userstamps();
+            $this->boolean('is_synced')->default(false);
+            $this->timestamps();
+            $this->softDeletes();
+        });
     }
 }

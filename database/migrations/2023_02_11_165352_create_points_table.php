@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('points', function (Blueprint $table) {
-            $table->id();
+            $table->general();
             $table->string('name', 100)->unique();
             $table->string('code', 50)->nullable()->unique()->index();
-            $table->timestamps();
         });
     }
 

@@ -75,7 +75,7 @@ class User extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->hide(),
+            Text::make('id')->hide(),
 
             Text::make(__('Full name'),'name')
                 ->sortable()
