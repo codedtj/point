@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('item_receipt_voucher', function (Blueprint $table) {
             $table->general();
             $table->foreignUuid('item_id')->index();
-            $table->foreignUuid('receipt_voucher')->index();
+            $table->foreignUuid('receipt_voucher_id')->index();
             $table->integer('quantity');
         });
     }

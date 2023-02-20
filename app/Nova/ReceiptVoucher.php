@@ -2,7 +2,9 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
@@ -39,7 +41,12 @@ class ReceiptVoucher extends Resource
         return [
             ID::make()->sortable()->hide(),
             Text::make(__('Number'), 'number')->sortable()->nullable(),
-            BelongsTo::make('Point')
+            BelongsTo::make('Point'),
+            BelongsToMany::make(__('Items'), 'items', Item::class) ->fields(function ($request, $relatedModel) {
+                return [
+                    Number::make(__('Quantity'), 'quantity'),
+                ];
+            }),
         ];
     }
 }

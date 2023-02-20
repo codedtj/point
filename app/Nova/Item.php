@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enum\Unit;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
@@ -23,7 +24,7 @@ class Item extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -78,7 +79,12 @@ class Item extends Resource
                 }
 
                 return $options;
-            })->displayUsingLabels()
+            })->displayUsingLabels(),
+            BelongsToMany::make(__('Receipt Vouchers'), 'receiptVouchers', ReceiptVoucher::class) ->fields(function ($request, $relatedModel) {
+                return [
+                    Number::make(__('Quantity'), 'quantity'),
+                ];
+            }),
         ];
     }
 

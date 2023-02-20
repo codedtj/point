@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Item extends Model
 {
     use HasFactory;
 
-    public function receiptVouchers(): BelongsTo
+    public function receiptVouchers(): BelongsToMany
     {
-        return $this->belongsTo(ReceiptVoucher::class);
+        return $this->belongsToMany(ReceiptVoucher::class)->using(Pivot::class)->withPivot('quantity');
     }
 }
