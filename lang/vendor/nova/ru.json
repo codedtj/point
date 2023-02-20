@@ -427,7 +427,7 @@
     "Customize": "Настроить",
     "Update :resource: :title": ":resource :title - редактирование",
     "Update attached :resource: :title": "Обновление прикреплённый :resource: :title",
-    ":resource Details: :title": "Детали :resource: :title",
+    ":resource Details: :title": ":resource: :title",
     "The HasOne relationship has already been filled.": "Отношение один к одному уже заполнено.",
     "An error occurred while uploading the file.": "Произошла ошибка при загрузке файла.",
     "Previewing": "Предварительный просмотр",
@@ -470,5 +470,8 @@
     "Create Point": "Добвить Точку",
     "Update Point": "Обновить Точку",
     "Name": "Имя",
-    "Code": "Код"
+    "Code": "Код",
+    "Number": "Номер",
+    "Receipt Voucher": "Приходный ордер",
+    "Receipt Vouchers": "Приходные ордера"
 }

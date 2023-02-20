@@ -12,6 +12,8 @@ class ReceiptVoucher extends Resource
 {
     public static string $model = \App\Models\ReceiptVoucher::class;
 
+    public static $title = 'number';
+
     public static function label(): string
     {
         return __('Receipt Vouchers');

@@ -39,7 +39,7 @@ class Point extends Resource
             ID::make()->sortable()->hide(),
             Text::make(__('Name'), 'name')->maxlength(100)->sortable(),
             Text::make(__('Code'), 'code')->maxlength(50)->sortable()->nullable(),
-            HasMany::make('ReceiptVouchers')
+            HasMany::make(__('Receipt Vouchers'), 'receiptVouchers', ReceiptVoucher::class)
         ];
     }
 }
