@@ -40,11 +40,13 @@ class ReceiptVoucher extends Resource
     {
         return [
             ID::make()->sortable()->hide(),
-            Text::make(__('Number'), 'number')->sortable()->nullable(),
+            Text::make(__('Number'), 'number')->sortable()->rules('required'),
             BelongsTo::make('Point'),
-            BelongsToMany::make(__('Items'), 'items', Item::class) ->fields(function ($request, $relatedModel) {
+            BelongsToMany::make(__('Items'), 'items', Item::class)
+                ->required()
+                ->fields(function ($request, $relatedModel) {
                 return [
-                    Number::make(__('Quantity'), 'quantity'),
+                    Number::make(__('Quantity'), 'quantity')->rules('required'),
                 ];
             }),
         ];
