@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('action_events', function (Blueprint $table) {
-            $table->uuid('actionable_id')->change();
-            $table->uuid('target_id')->change();
-            $table->uuid('model_id')->change();
+        Schema::create('receipt_vouchers', function (Blueprint $table) {
+            $table->general();
+            $table->unsignedInteger('number');
+            $table->foreignUuid('point_id')->index();
         });
     }
 
@@ -27,7 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('action_events', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('receipt_vouchers');
     }
 };
