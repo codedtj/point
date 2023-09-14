@@ -38,7 +38,9 @@ function seed() {
 
 function run() {
     create_network
+    docker compose build
     docker compose up -d
     docker exec point-app composer install
     docker exec point-app php artisan migrate
+    docker exec point-app npm run dev
 }
