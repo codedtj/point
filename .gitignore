@@ -15,6 +15,6 @@
 /src/npm-debug.log
 /src/yarn-error.log
 /src/.fleet
-/src/.idea
+/.idea
 /src/.vscode
 /.docker/mysql
