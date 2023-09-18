@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx
+    container_name: point-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www
+      - ./.docker/nginx:/etc/nginx/conf.d
+    depends_on:
+        - app
+    networks:
+      point:
+        aliases:
+          - point.localhost
+  app:
+    build:
+      context: .docker
+      dockerfile: ./php/Dockerfile
+    image: point
+    container_name: point-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    env_file:
+      - ./.docker/php/local.env
+    volumes:
+      - ./src:/var/www
+    depends_on:
+        db:
+            condition: service_healthy
+    ports:
+      - "9000:9000"
+      - "5173:5173"
+    networks:
+      - point
+  db:
+    image: mysql:8.0.33
+    container_name: point-db
+    volumes:
+      - ./.docker/mysql/init/coded_point.sql:/docker-entrypoint-initdb.d/coded_point.sql
+      - ./.docker/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "coded_point"
+      MYSQL_ROOT_PASSWORD: "test"
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    networks:
+      point:
+        aliases:
+          - point-db
+
+networks:
+  point:
+    external: true
