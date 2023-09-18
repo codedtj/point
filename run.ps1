@@ -1,5 +1,6 @@
 function up {
    docker compose up
+   docker exec point-app npm run dev
 }
 
 function down {
@@ -12,6 +13,7 @@ function stop {
 
 function restart {
     docker compose restart
+    docker exec point-app npm run dev
 }
 
 function vendor() {
@@ -41,6 +43,7 @@ function run() {
     docker compose build
     docker compose up -d
     docker exec point-app composer install
+    docker exec point-app php artisan storage:link
     docker exec point-app php artisan migrate
     docker exec point-app npm run dev
 }
