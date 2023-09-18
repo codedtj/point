@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('code', 50)->index();
             $table->string('unit', 3);
             $table->longText('description')->nullable();
+            $table->string('image')->nullable();
         });
     }
 
