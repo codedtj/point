@@ -31,6 +31,9 @@ services:
     depends_on:
         db:
             condition: service_healthy
+    ports:
+      - "9000:9000"
+      - "5173:5173"
     networks:
       - point
   db:
