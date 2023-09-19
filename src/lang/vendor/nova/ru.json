@@ -485,5 +485,8 @@
     "Stock Balances": "Остатки на складе",
     "Consignment Note Draft": "Черновик",
     "Consignment Note Completed": "Проведена",
-    "Consignment note(s) completed!": "Накладная(ые) проведена(ы)!"
+    "Consignment note(s) completed!": "Накладная(ые) проведена(ы)!",
+    "Status": "Статус",
+    "Price": "Цена",
+    "Base Price": "Базовая цена"
 }
