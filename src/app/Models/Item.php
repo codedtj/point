@@ -9,8 +9,10 @@ class Item extends Model
 {
     use HasFactory;
 
-    public function receiptVouchers(): BelongsToMany
+    public function consignmentNotes(): BelongsToMany
     {
-        return $this->belongsToMany(ConsignmentNote::class)->using(Pivot::class)->withPivot('quantity');
+        return $this->belongsToMany(ConsignmentNote::class)
+            ->using(Pivot::class)
+            ->withPivot(['quantity', 'price']);
     }
 }

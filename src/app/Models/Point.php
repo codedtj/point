@@ -9,7 +9,7 @@ class Point extends Model
 {
     use HasFactory;
 
-    public function receiptVouchers(): HasMany
+    public function consignmentNotes(): HasMany
     {
         return $this->hasMany(ConsignmentNote::class);
     }

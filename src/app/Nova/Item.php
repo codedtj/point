@@ -91,7 +91,7 @@ class Item extends Resource
             })
                 ->displayUsingLabels()
                 ->rules('required'),
-            BelongsToMany::make(__('Receipt Vouchers'), 'receiptVouchers', ConsignmentNote::class)
+            BelongsToMany::make(__('Consignment Notes'), 'consignmentNotes', ConsignmentNote::class)
                 ->fields(function ($request, $relatedModel) {
                 return [
                     Number::make(__('Quantity'), 'quantity'),

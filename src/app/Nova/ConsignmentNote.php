@@ -68,8 +68,19 @@ class ConsignmentNote extends Resource
                 ->fields(function ($request, $relatedModel) {
                     return [
                         Number::make(__('Quantity'), 'quantity')->rules('required'),
+                        Number::make(__('Price'), 'price')
+                            ->min(0)
+                            ->default(0)
+                            ->rules('required'),
                     ];
                 }),
+        ];
+    }
+
+    public function actions(NovaRequest $request): array
+    {
+        return [
+            new Actions\CompleteConsignmentNote(),
         ];
     }
 
