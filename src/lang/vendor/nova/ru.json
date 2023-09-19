@@ -446,8 +446,8 @@
     "Notifications": "Уведомления",
     "Mark all as Read": "Отметить все как прочитанное",
     "Copy to clipboard": "Копировать в буфер обмена",
-    "Item title" : "Наименование",
-    "Item code" : "Артикул",
+    "Item title": "Наименование",
+    "Item code": "Артикул",
     "Description": "Описание",
     "Quantity": "Количество",
     "Item units": "Единицы",
@@ -476,5 +476,9 @@
     "Consignment Notes": "Товарные накладные",
     "Create Consignment Note": "Создать Товарную Накладную",
     "Update Consignment Note": "Обновить Товарную Накладную",
-    "Image": "Изображение"
+    "Image": "Изображение",
+    "Type": "Тип",
+    "Consignment Note In": "Приходная накладная",
+    "Consignment Note Out": "Расходная накладная",
+    "Consignment Note Transfer": "Накладная перемещения"
 }

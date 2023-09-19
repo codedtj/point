@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignUuid('item_id')->index();
             $table->foreignUuid('consignment_note_id')->index();
             $table->integer('quantity');
+            $table->unsignedTinyInteger('type');
         });
     }
 
