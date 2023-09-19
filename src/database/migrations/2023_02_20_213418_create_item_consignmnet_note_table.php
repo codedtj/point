@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item_consignment_note', function (Blueprint $table) {
+        Schema::create('consignment_note_item', function (Blueprint $table) {
             $table->general();
             $table->foreignUuid('item_id')->index();
             $table->foreignUuid('receipt_voucher_id')->index();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_consignment_note');
+        Schema::dropIfExists('consignment_note_item');
     }
 };
