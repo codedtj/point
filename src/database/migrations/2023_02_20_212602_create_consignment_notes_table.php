@@ -17,6 +17,7 @@ return new class extends Migration
             $table->general();
             $table->unsignedInteger('number');
             $table->foreignUuid('point_id')->index();
+            $table->unsignedTinyInteger('type');
         });
     }
 
