@@ -482,5 +482,7 @@
     "Consignment Note Out": "Расходная накладная",
     "Consignment Note Transfer": "Накладная перемещения",
     "Stock Balance": "Остаток на складе",
-    "Stock Balances": "Остатки на складе"
+    "Stock Balances": "Остатки на складе",
+    "Consignment Note Draft": "Черновик",
+    "Consignment Note Completed": "Проведена"
 }

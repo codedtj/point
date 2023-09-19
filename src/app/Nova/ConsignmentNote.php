@@ -2,15 +2,15 @@
 
 namespace App\Nova;
 
+use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
-use App\Enum\Unit;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\BelongsTo;
 
 
 class ConsignmentNote extends Resource
@@ -46,22 +46,35 @@ class ConsignmentNote extends Resource
             Text::make(__('Number'), 'number')->sortable()->rules('required'),
             BelongsTo::make(__('Point'), 'point', Point::class)->required(),
             Select::make(__('Type'), 'type')
-                ->options(function() {
+                ->options(function () {
                     $options = [];
 
                     foreach (ConsignmentNoteType::cases() as $case) {
-                        $options[$case->value] = __('Consignment Note ' . $case->name);
+                        $options[$case->value] = $this->getTranslation($case->name);
                     }
 
                     return $options;
-                })->rules('required'),
+                })->rules('required')
+                ->displayUsing(function ($value) {
+                    return $this->getTranslation(ConsignmentNoteType::from($value)->name);
+                }),
+            Select::make(__('Status'), 'status')
+                ->displayUsing(function ($value) {
+                    return $this->getTranslation(ConsignmentNoteStatus::from($value)->name);
+                })
+                ->exceptOnForms(),
             BelongsToMany::make(__('Items'), 'items', Item::class)
                 ->required()
                 ->fields(function ($request, $relatedModel) {
-                return [
-                    Number::make(__('Quantity'), 'quantity')->rules('required'),
-                ];
-            }),
+                    return [
+                        Number::make(__('Quantity'), 'quantity')->rules('required'),
+                    ];
+                }),
         ];
+    }
+
+    private function getTranslation(string $value): string
+    {
+        return __('Consignment Note ' . $value);
     }
 }
