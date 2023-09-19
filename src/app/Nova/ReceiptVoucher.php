@@ -41,7 +41,7 @@ class ReceiptVoucher extends Resource
         return [
             ID::make()->sortable()->hide(),
             Text::make(__('Number'), 'number')->sortable()->rules('required'),
-            BelongsTo::make('Point'),
+            BelongsTo::make(__('Point'), 'point', Point::class)->required(),
             BelongsToMany::make(__('Items'), 'items', Item::class)
                 ->required()
                 ->fields(function ($request, $relatedModel) {
