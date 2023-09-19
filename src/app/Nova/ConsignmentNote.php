@@ -54,7 +54,7 @@ class ConsignmentNote extends Resource
                     }
 
                     return $options;
-                }),
+                })->rules('required'),
             BelongsToMany::make(__('Items'), 'items', Item::class)
                 ->required()
                 ->fields(function ($request, $relatedModel) {
