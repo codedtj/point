@@ -28,6 +28,10 @@ class CompleteConsignmentNote extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $model) {
+            if ($model->status === ConsignmentNoteStatus::Completed) {
+                continue;
+            }
+
             $model->update([
                 'status' => ConsignmentNoteStatus::Completed,
             ]);
