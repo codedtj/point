@@ -11,6 +11,6 @@ class Point extends Model
 
     public function receiptVouchers(): HasMany
     {
-        return $this->hasMany(ReceiptVoucher::class);
+        return $this->hasMany(ConsignmentNote::class);
     }
 }

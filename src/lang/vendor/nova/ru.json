@@ -472,9 +472,9 @@
     "Name": "Имя",
     "Code": "Код",
     "Number": "Номер",
-    "Receipt Voucher": "Приходный ордер",
-    "Receipt Vouchers": "Приходные ордера",
-    "Create Receipt Voucher": "Создать Приходный Ордер",
-    "Update Receipt Voucher": "Update Receipt Voucher",
+    "Consignment Note": "Товарная накладная",
+    "Consignment Notes": "Товарные накладные",
+    "Create Consignment Note": "Создать Товарную Накладную",
+    "Update Consignment Note": "Обновить Товарную Накладную",
     "Image": "Изображение"
 }

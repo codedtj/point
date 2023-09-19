@@ -11,6 +11,6 @@ class Item extends Model
 
     public function receiptVouchers(): BelongsToMany
     {
-        return $this->belongsToMany(ReceiptVoucher::class)->using(Pivot::class)->withPivot('quantity');
+        return $this->belongsToMany(ConsignmentNote::class)->using(Pivot::class)->withPivot('quantity');
     }
 }

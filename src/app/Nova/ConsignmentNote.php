@@ -10,30 +10,30 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
 
 
-class ReceiptVoucher extends Resource
+class ConsignmentNote extends Resource
 {
-    public static string $model = \App\Models\ReceiptVoucher::class;
+    public static string $model = \App\Models\ConsignmentNote::class;
 
     public static $title = 'number';
 
     public static function label(): string
     {
-        return __('Receipt Vouchers');
+        return __('Consignment Notes');
     }
 
     public static function singularLabel(): string
     {
-        return __('Receipt Voucher');
+        return __('Consignment Note');
     }
 
     public static function createButtonLabel()
     {
-        return __('Create Receipt Voucher');
+        return __('Create Consignment Note');
     }
 
     public static function updateButtonLabel()
     {
-        return __('Update Receipt Voucher');
+        return __('Update Consignment Note');
     }
 
     public function fields(NovaRequest $request): array
