@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('consignment_note_item', function (Blueprint $table) {
             $table->general();
             $table->foreignUuid('item_id')->index();
-            $table->foreignUuid('receipt_voucher_id')->index();
+            $table->foreignUuid('consignment_note_id')->index();
             $table->integer('quantity');
         });
     }
