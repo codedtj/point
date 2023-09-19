@@ -480,5 +480,7 @@
     "Type": "Тип",
     "Consignment Note In": "Приходная накладная",
     "Consignment Note Out": "Расходная накладная",
-    "Consignment Note Transfer": "Накладная перемещения"
+    "Consignment Note Transfer": "Накладная перемещения",
+    "Stock Balance": "Остаток на складе",
+    "Stock Balances": "Остатки на складе"
 }
