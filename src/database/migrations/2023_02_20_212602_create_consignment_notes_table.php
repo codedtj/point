@@ -18,6 +18,11 @@ return new class extends Migration
             $table->unsignedInteger('number');
             $table->foreignUuid('point_id')->index();
             $table->unsignedTinyInteger('type');
+
+            $table->foreign('point_id')
+                ->references('id')
+                ->on('points')
+                ->onDelete('RESTRICT');
         });
     }
 

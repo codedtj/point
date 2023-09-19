@@ -13,20 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('consignment_note_item', function (Blueprint $table) {
+        Schema::create('stock_balances', function (Blueprint $table) {
             $table->general();
             $table->foreignUuid('item_id')->index();
-            $table->foreignUuid('consignment_note_id')->index();
+            $table->foreignUuid('point_id')->index();
             $table->unsignedFloat('quantity');
+            $table->decimal('base_price');
 
             $table->foreign('item_id')
                 ->references('id')
                 ->on('items')
                 ->onDelete('RESTRICT');
 
-            $table->foreign('consignment_note_id')
+            $table->foreign('point_id')
                 ->references('id')
-                ->on('consignment_notes')
+                ->on('points')
                 ->onDelete('RESTRICT');
         });
     }
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consignment_note_item');
+        Schema::dropIfExists('stock_balances');
     }
 };
