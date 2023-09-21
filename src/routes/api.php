@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Point\PointController;
 use App\Http\Controllers\API\Point\PointStockBalanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource(
     'points.stock-balances',
     PointStockBalanceController::class
+)->only(['index']);
+
+Route::resource(
+    'points',
+    PointController::class
 )->only(['index']);
