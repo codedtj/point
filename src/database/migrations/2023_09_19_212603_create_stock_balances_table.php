@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedFloat('quantity');
             $table->decimal('base_price');
 
+            $table->unique(['item_id', 'point_id']);
+
             $table->foreign('item_id')
                 ->references('id')
                 ->on('items')
