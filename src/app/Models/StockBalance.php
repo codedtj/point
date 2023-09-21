@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property float $quantity
+ * @property double $base_price
  */
 class StockBalance extends Model
 {

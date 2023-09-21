@@ -59,9 +59,11 @@ class CompleteConsignmentNote extends Action
                         ConsignmentNoteType::Out, ConsignmentNoteType::Transfer => $balance->quantity - $item->pivot->quantity,
                     };
 
+                    $basePrice = $item->pivot->price > 0 ? $item->pivot->price : $balance->base_price;
+
                     $balance->update([
                         'quantity' => $newQuantity,
-                        'base_price' => $item->pivot->price,
+                        'base_price' => $basePrice,
                     ]);
                 }, 3);
             }
