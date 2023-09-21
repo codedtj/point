@@ -13,4 +13,9 @@ class Point extends Model
     {
         return $this->hasMany(ConsignmentNote::class);
     }
+
+    public function stockBalances(): HasMany
+    {
+        return $this->hasMany(StockBalance::class);
+    }
 }
