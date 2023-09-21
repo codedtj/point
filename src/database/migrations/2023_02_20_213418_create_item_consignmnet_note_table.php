@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('consignment_note_item', function (Blueprint $table) {
-            $table->general();
+            $table->uuid('id')->primary();
             $table->foreignUuid('item_id')->index();
             $table->foreignUuid('consignment_note_id')->index();
             $table->unsignedFloat('quantity');
             $table->decimal('price');
+            $table->general();
 
             $table->foreign('item_id')
                 ->references('id')

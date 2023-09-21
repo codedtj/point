@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stock_balances', function (Blueprint $table) {
-            $table->general();
+            $table->uuid('id')->primary();
             $table->foreignUuid('item_id')->index();
             $table->foreignUuid('point_id')->index();
             $table->unsignedFloat('quantity');
             $table->decimal('base_price');
+            $table->general();
 
             $table->unique(['item_id', 'point_id']);
 

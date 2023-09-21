@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('action_events', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->uuid('actionable_id')->change();
             $table->uuid('target_id')->change();
             $table->uuid('model_id')->change();
+            $table->general();
         });
     }
 

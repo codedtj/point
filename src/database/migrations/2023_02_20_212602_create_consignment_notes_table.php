@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('consignment_notes', function (Blueprint $table) {
-            $table->general();
+            $table->uuid('id')->primary();
             $table->unsignedInteger('number');
             $table->foreignUuid('point_id')->index();
             $table->unsignedTinyInteger('type');
             $table->unsignedTinyInteger('status')->default(0);
+            $table->general();
 
             $table->foreign('point_id')
                 ->references('id')

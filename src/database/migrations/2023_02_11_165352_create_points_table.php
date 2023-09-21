@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('points', function (Blueprint $table) {
-            $table->general();
+            $table->uuid('id')->primary();
             $table->string('name', 100)->unique();
             $table->string('code', 50)->nullable()->unique()->index();
+            $table->general();
         });
     }
 
