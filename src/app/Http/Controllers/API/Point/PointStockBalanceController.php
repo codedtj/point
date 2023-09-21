@@ -10,6 +10,8 @@ class PointStockBalanceController extends ApiController
 {
     public function index(Point $point): Paginator
     {
-        return $point->stockBalances()->simplePaginate($this->getPerPageValue());
+        return $point->stockBalances()
+            ->with('item')
+            ->simplePaginate($this->getPerPageValue());
     }
 }
