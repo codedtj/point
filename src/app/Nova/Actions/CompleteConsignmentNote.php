@@ -4,7 +4,6 @@ namespace App\Nova\Actions;
 
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
-use App\Models\ConsignmentNote;
 use App\Models\StockBalance;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -72,15 +71,8 @@ class CompleteConsignmentNote extends Action
         return Action::message(__('Consignment note(s) completed!'));
     }
 
-        /**
-         * Get the fields available on the action.
-         *
-         * @param NovaRequest $request
-         * @return array
-         */
-        public
-        function fields(NovaRequest $request)
-        {
-            return [];
-        }
+    public function fields(NovaRequest $request): array
+    {
+        return [];
     }
+}
