@@ -488,5 +488,6 @@
     "Consignment note(s) completed!": "Накладная(ые) проведена(ы)!",
     "Status": "Статус",
     "Price": "Цена",
-    "Base Price": "Базовая цена"
+    "Base Price": "Базовая цена",
+    "Complete Consignment Note": "Провести накладную"
 }

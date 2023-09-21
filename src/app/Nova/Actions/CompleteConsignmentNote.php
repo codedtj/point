@@ -75,4 +75,9 @@ class CompleteConsignmentNote extends Action
     {
         return [];
     }
+
+    public function name(): string
+    {
+        return __('Complete Consignment Note');
+    }
 }
