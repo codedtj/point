@@ -81,24 +81,25 @@ class Item extends Resource
             Text::make(__('Description'), 'description')
                 ->nullable(),
             Select::make(__('Item units'), 'unit')
-                ->options(function() {
-                $options = [];
+                ->options(function () {
+                    $options = [];
 
-                foreach (Unit::cases() as $case) {
-                    $options[$case->value] = __($case->name);
-                }
+                    foreach (Unit::cases() as $case) {
+                        $options[$case->value] = __($case->name);
+                    }
 
-                return $options;
-            })
+                    return $options;
+                })
                 ->displayUsingLabels()
                 ->rules('required'),
             BelongsToMany::make(__('Consignment Notes'), 'consignmentNotes', ConsignmentNote::class)
                 ->fields(function ($request, $relatedModel) {
-                return [
-                    Number::make(__('Quantity'), 'quantity'),
-                ];
-            }),
-            BelongsTo::make(__("Category"), 'category', Category::class),
+                    return [
+                        Number::make(__('Quantity'), 'quantity'),
+                    ];
+                }),
+            BelongsTo::make(__("Category"), 'category', Category::class)
+                ->withoutTrashed(),
             Image::make(__('Image'), 'image')
                 ->disk('public')
                 ->path('items')
