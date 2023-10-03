@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\Category\CategoryController;
+use App\Http\Controllers\API\Category\CategoryItemController;
 use App\Http\Controllers\API\Point\PointController;
 use App\Http\Controllers\API\Point\PointStockBalanceController;
 use Illuminate\Http\Request;
@@ -28,4 +30,15 @@ Route::resource(
 Route::resource(
     'points',
     PointController::class
+)->only(['index']);
+
+Route::resource(
+    'categories',
+    CategoryController::class
+)->only(['index']);
+
+
+Route::resource(
+    'categories.items',
+    CategoryItemController::class
 )->only(['index']);
