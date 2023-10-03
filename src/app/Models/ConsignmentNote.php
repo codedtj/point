@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * @property string $id
+ * @property string $point_id
+ * @property ConsignmentNoteStatus $status
+ * @property ConsignmentNoteType $type
+ */
 class ConsignmentNote extends Model
 {
     use HasFactory;
