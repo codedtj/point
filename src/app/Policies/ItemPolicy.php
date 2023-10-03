@@ -25,4 +25,9 @@ class ItemPolicy
     {
         return false;
     }
+
+    public function detachConsignmentNote(User $user, Item $item, ConsignmentNote $consignmentNote): bool
+    {
+        return false;
+    }
 }
