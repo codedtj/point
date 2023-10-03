@@ -2,12 +2,8 @@
 
 namespace App\Nova;
 
-use App\Enum\Unit;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -80,6 +76,7 @@ class Category extends Resource
                 ->maxlength(100)
                 ->sortable()
                 ->rules('required'),
+            HasMany::make(__('Items'), 'items', Item::class),
         ];
     }
 
