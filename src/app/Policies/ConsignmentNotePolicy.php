@@ -46,4 +46,9 @@ class ConsignmentNotePolicy
     {
         return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
     }
+
+    public function detachItem(User $user, ConsignmentNote $consignmentNote, Item $item): bool
+    {
+        return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
+    }
 }
