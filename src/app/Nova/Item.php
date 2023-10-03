@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enum\Unit;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
@@ -97,6 +98,7 @@ class Item extends Resource
                     Number::make(__('Quantity'), 'quantity'),
                 ];
             }),
+            BelongsTo::make(__("Category"), 'category', Category::class),
             Image::make(__('Image'), 'image')
                 ->disk('public')
                 ->path('items')

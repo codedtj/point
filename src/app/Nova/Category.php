@@ -25,7 +25,7 @@ class Category extends Resource
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
