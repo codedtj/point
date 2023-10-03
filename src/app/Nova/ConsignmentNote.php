@@ -44,7 +44,7 @@ class ConsignmentNote extends Resource
         return [
             ID::make()->sortable()->hide(),
             Text::make(__('Number'), 'number')->sortable()->rules('required'),
-            BelongsTo::make(__('Point'), 'point', Point::class)->required(),
+            BelongsTo::make(__('Point'), 'point', Point::class)->required()->withoutTrashed(),
             Select::make(__('Type'), 'type')
                 ->options(function () {
                     $options = [];
@@ -77,15 +77,15 @@ class ConsignmentNote extends Resource
         ];
     }
 
+    private function getTranslation(string $value): string
+    {
+        return __('Consignment Note ' . $value);
+    }
+
     public function actions(NovaRequest $request): array
     {
         return [
             new Actions\CompleteConsignmentNote(),
         ];
-    }
-
-    private function getTranslation(string $value): string
-    {
-        return __('Consignment Note ' . $value);
     }
 }
