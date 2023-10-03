@@ -20,7 +20,13 @@ return new class extends Migration
             $table->string('unit', 3);
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
+            $table->foreignUuid('category_id')->index()->nullable();
             $table->general();
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('RESTRICT');
         });
     }
 

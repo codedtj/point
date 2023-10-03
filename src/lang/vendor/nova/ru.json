@@ -489,5 +489,8 @@
     "Status": "Статус",
     "Price": "Цена",
     "Base Price": "Базовая цена",
-    "Complete Consignment Note": "Провести накладную"
+    "Complete Consignment Note": "Провести накладную",
+    "Category": "Категория",
+    "Create Category": "Создать Категорию",
+    "Update Category": "Обновить Категорию"
 }
