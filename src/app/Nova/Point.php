@@ -39,7 +39,8 @@ class Point extends Resource
             ID::make()->sortable()->hide(),
             Text::make(__('Name'), 'name')->maxlength(100)->sortable(),
             Text::make(__('Code'), 'code')->maxlength(50)->sortable()->nullable(),
-            HasMany::make(__('Consignment Notes'), 'consignmentNotes', ConsignmentNote::class)
+            HasMany::make(__('Consignment Notes'), 'consignmentNotes', ConsignmentNote::class),
+            HasMany::make(__('Stock Balances'), 'stockBalances', StockBalance::class),
         ];
     }
 }
