@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
+use App\Models\ConsignmentNote as ConsignmentNoteModel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
@@ -15,7 +16,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ConsignmentNote extends Resource
 {
-    public static string $model = \App\Models\ConsignmentNote::class;
+    public static string $model = ConsignmentNoteModel::class;
 
     public static $title = 'number';
 
@@ -85,7 +86,10 @@ class ConsignmentNote extends Resource
     public function actions(NovaRequest $request): array
     {
         return [
-            new Actions\CompleteConsignmentNote(),
+            (new Actions\CompleteConsignmentNote())
+                ->canRun(function ($request, ConsignmentNoteModel $consignmentNote) {
+                    return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
+                }),
         ];
     }
 }
