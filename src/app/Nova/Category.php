@@ -39,7 +39,7 @@ class Category extends Resource
      */
     public static function label(): string
     {
-        return __('Category');
+        return __('Categories');
     }
 
     /**
