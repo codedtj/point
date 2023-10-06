@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\BasketStatus;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -18,5 +19,10 @@ class Basket extends Model
         return $this->belongsToMany(Item::class)
             ->using(Pivot::class)
             ->withPivot(['quantity']);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

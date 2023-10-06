@@ -4,6 +4,7 @@ use App\Http\Controllers\API\Category\CategoryController;
 use App\Http\Controllers\API\Category\CategoryItemController;
 use App\Http\Controllers\API\Checkout\BasketController;
 use App\Http\Controllers\API\Checkout\BasketItemController;
+use App\Http\Controllers\API\Checkout\ContactController;
 use App\Http\Controllers\API\Point\PointController;
 use App\Http\Controllers\API\Point\PointStockBalanceController;
 use Illuminate\Http\Request;
@@ -54,3 +55,8 @@ Route::resource(
     'baskets',
     BasketController::class
 )->only(['index', 'show', 'store']);
+
+Route::post(
+    'checkout/baskets/{basket_id}/contacts',
+    ContactController::class
+);

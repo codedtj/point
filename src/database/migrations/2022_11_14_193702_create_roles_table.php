@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name', 30)->unique();
             $table->string('local_name', 128)->unique();
             $table->text('permissions')->nullable();
+            $table->general();
         });
     }
 

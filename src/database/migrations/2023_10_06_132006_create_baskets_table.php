@@ -16,7 +16,13 @@ return new class extends Migration
         Schema::create('baskets', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedTinyInteger('status');
+            $table->foreignUuid('user_id')->nullable()->index();
             $table->general();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('RESTRICT');
         });
     }
 
