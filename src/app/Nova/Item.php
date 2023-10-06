@@ -99,6 +99,7 @@ class Item extends Resource
                     ];
                 }),
             BelongsTo::make(__("Category"), 'category', Category::class)
+                ->nullable()
                 ->withoutTrashed(),
             Image::make(__('Image'), 'image')
                 ->disk('public')

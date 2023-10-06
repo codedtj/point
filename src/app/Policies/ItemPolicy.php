@@ -21,6 +21,16 @@ class ItemPolicy
         return true;
     }
 
+    public function create(User $user): bool
+    {
+        return true;
+    }
+
+    public function update(User $user, Item $item): bool
+    {
+        return true;
+    }
+
     public function attachAnyConsignmentNote(User $user, Item $item): bool
     {
         return false;
