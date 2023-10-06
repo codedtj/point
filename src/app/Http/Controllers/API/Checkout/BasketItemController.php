@@ -15,6 +15,10 @@ class BasketItemController extends ApiController
 
     public function store(Basket $basket): void
     {
+        if ($basket->status->editable() === false) {
+            abort(403, 'Basket is not editable');
+        }
+
         $basket->items()->attach(
             request()->get('item_id'),
             [
@@ -25,6 +29,10 @@ class BasketItemController extends ApiController
 
     public function update(Basket $basket, string $itemId): void
     {
+        if ($basket->status->editable() === false) {
+            abort(403, 'Basket is not editable');
+        }
+
         $basket->items()->updateExistingPivot($itemId, [
             'quantity' => request()->get('quantity')
         ]);
