@@ -14,6 +14,9 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', function () {
+    return redirect('/admin/login');
+})->name('login');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -30,7 +33,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return redirect('/admin');
     })->name('dashboard');
 });
 
