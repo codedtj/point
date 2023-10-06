@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -16,8 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class ConsignmentNote extends Model
 {
-    use HasFactory;
-
     protected $casts = [
         'status' => ConsignmentNoteStatus::class,
         'type' => ConsignmentNoteType::class,

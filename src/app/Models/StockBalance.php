@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class StockBalance extends Model
 {
-    use HasFactory;
-
     public function point(): BelongsTo
     {
         return $this->belongsTo(Point::class);
