@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Category\CategoryController;
 use App\Http\Controllers\API\Category\CategoryItemController;
 use App\Http\Controllers\API\Checkout\BasketController;
+use App\Http\Controllers\API\Checkout\BasketItemController;
 use App\Http\Controllers\API\Point\PointController;
 use App\Http\Controllers\API\Point\PointStockBalanceController;
 use Illuminate\Http\Request;
@@ -43,6 +44,11 @@ Route::resource(
     'categories.items',
     CategoryItemController::class
 )->only(['index']);
+
+Route::resource(
+    'baskets.items',
+    BasketItemController::class
+)->only(['index', 'store', 'update']);
 
 Route::resource(
     'baskets',
