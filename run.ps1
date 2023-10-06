@@ -46,5 +46,6 @@ function run() {
     docker exec point-app php artisan storage:link
     docker exec point-app php artisan migrate
     docker exec point-app npm install
+    docker exec point-app php artisan nova:publish
     docker exec point-app npm run dev
 }
