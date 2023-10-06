@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Checkout;
 
+use App\Enum\BasketStatus;
 use App\Http\Controllers\API\ApiController;
 use App\Models\Basket;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ class ContactController extends ApiController
 {
     public function __invoke(Basket $basket): Model
     {
-        return $basket
+        $user = $basket
             ->user()
             ->firstOrCreate(['email' => request('email')], [
                 'name' => request('name'),
@@ -19,5 +20,9 @@ class ContactController extends ApiController
                 'address' => request('address'),
                 'password' => bcrypt(Str::random(10))
             ]);
+
+        $basket->status = BasketStatus::Processing;
+
+        return $user;
     }
 }
