@@ -11,9 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $id
  * @property BasketStatus $status
  * @property Collection $items
+ * @property string $user_id
  */
 class Basket extends Model
 {
+    protected $casts = [
+        'status' => BasketStatus::class,
+    ];
+
     public function items(): BelongsToMany
     {
         return $this->belongsToMany(Item::class)

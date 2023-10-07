@@ -12,6 +12,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property string $id
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;

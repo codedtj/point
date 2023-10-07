@@ -22,6 +22,6 @@ class BasketController extends ApiController
 
     public function store(): Model
     {
-        return Basket::query()->create(['status' => BasketStatus::Draft]);
+        return Basket::query()->create(['status' => BasketStatus::Active]);
     }
 }

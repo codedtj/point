@@ -57,6 +57,6 @@ Route::resource(
 )->only(['index', 'show', 'store']);
 
 Route::post(
-    'checkout/baskets/{basket_id}/contacts',
+    'baskets/{basket}/contacts',
     ContactController::class
 );
