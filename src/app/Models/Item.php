@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property string $id
@@ -20,5 +21,10 @@ class Item extends Model
         return $this->belongsToMany(ConsignmentNote::class)
             ->using(Pivot::class)
             ->withPivot(['quantity', 'price']);
+    }
+
+    public function stockBalances(): HasMany
+    {
+        return $this->hasMany(StockBalance::class);
     }
 }
