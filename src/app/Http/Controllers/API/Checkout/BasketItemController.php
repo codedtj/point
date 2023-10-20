@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class BasketItemController extends ApiController
 {
-    public function index(): Collection|array
+    public function index(Basket $basket): Collection|array
     {
-        return Basket::query()->get();
+        return $basket->items()->with('category')->get();
     }
 
     public function store(Basket $basket): void
