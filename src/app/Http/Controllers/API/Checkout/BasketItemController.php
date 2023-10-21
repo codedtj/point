@@ -44,4 +44,13 @@ class BasketItemController extends ApiController
             'quantity' => request()->get('quantity')
         ]);
     }
+
+    public function destroy(Basket $basket, string $itemId): void
+    {
+        if ($basket->status->editable() === false) {
+            abort(403, 'Basket is not editable');
+        }
+
+        $basket->items()->detach($itemId);
+    }
 }

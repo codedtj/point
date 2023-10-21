@@ -50,7 +50,7 @@ Route::resource(
 Route::resource(
     'baskets.items',
     BasketItemController::class
-)->only(['index', 'store', 'update']);
+)->only(['index', 'store', 'update', 'destroy']);
 
 Route::resource(
     'baskets',
