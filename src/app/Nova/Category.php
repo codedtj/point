@@ -52,11 +52,6 @@ class Category extends Resource
         return __('Category');
     }
 
-    public static function createButtonLabel(): string
-    {
-        return __('Create Category');
-    }
-
     public static function updateButtonLabel(): string
     {
         return __('Update Category');

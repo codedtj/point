@@ -67,4 +67,9 @@ abstract class Resource extends NovaResource
     {
         return false;
     }
+
+    public static function createButtonLabel()
+    {
+        return __('Create');
+    }
 }

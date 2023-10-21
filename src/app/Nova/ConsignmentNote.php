@@ -30,11 +30,6 @@ class ConsignmentNote extends Resource
         return __('Consignment Note');
     }
 
-    public static function createButtonLabel()
-    {
-        return __('Create Consignment Note');
-    }
-
     public static function updateButtonLabel()
     {
         return __('Update Consignment Note');

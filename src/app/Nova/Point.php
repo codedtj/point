@@ -23,11 +23,6 @@ class Point extends Resource
         return __('Point');
     }
 
-    public static function createButtonLabel()
-    {
-        return __('Create Point');
-    }
-
     public static function updateButtonLabel()
     {
         return __('Update Point');

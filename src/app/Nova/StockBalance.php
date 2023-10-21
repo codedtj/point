@@ -22,11 +22,6 @@ class StockBalance extends Resource
         return __('Stock Balance');
     }
 
-    public static function createButtonLabel()
-    {
-        return __('Create Stock Balance');
-    }
-
     public static function updateButtonLabel()
     {
         return __('Update Stock Balance');
