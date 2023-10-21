@@ -2,8 +2,20 @@
 
 namespace App\Providers;
 
+use App\Nova\Basket;
+use App\Nova\Category;
+use App\Nova\ConsignmentNote;
+use App\Nova\Dashboards\Main;
+use App\Nova\Item;
+use App\Nova\Order;
+use App\Nova\Point;
+use App\Nova\StockBalance;
+use App\Nova\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -25,6 +37,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             </div>
         ');
         });
+
+        $this->generateMenu();
     }
 
     /**
@@ -86,5 +100,31 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         //
+    }
+
+    private function generateMenu(): void
+    {
+        Nova::mainMenu(function (Request $request) {
+            return [
+                MenuSection::dashboard(Main::class)->icon('chart-bar'),
+
+                MenuSection::make(__('Admin'), [
+                    MenuItem::resource(Point::class),
+                    MenuItem::resource(User::class),
+                ])->icon('collection')->collapsable(),
+
+                MenuSection::make(__('Warehouse'), [
+                    MenuItem::resource(Category::class),
+                    MenuItem::resource(Item::class),
+                    MenuItem::resource(ConsignmentNote::class),
+                    MenuItem::resource(StockBalance::class),
+                ])->icon('home')->collapsable(),
+
+                MenuSection::make(__('Sales'), [
+                    MenuItem::resource(Basket::class),
+                    MenuItem::resource(Order::class),
+                ])->icon('credit-card')->collapsable(),
+            ];
+        });
     }
 }
