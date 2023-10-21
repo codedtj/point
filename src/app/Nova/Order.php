@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -28,6 +30,13 @@ class Order extends Resource
         return [
             ID::make()->sortable()->hide(),
             Text::make(__('Code'), 'code')->sortable()->rules('required'),
+            Date::make(__('Created At'), 'created_at')->sortable(),
+            BelongsTo::make(__("Basket"), 'basket', Basket::class)
+                ->nullable()
+                ->withoutTrashed(),
+            BelongsTo::make(__("User"), 'user', User::class)
+                ->nullable()
+                ->withoutTrashed(),
         ];
     }
 }

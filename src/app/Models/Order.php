@@ -28,9 +28,4 @@ class Order extends Model
     {
         return $this->belongsTo(Basket::class);
     }
-
-    public function items(): HasManyThrough
-    {
-        return $this->hasManyThrough(Item::class, Basket::class, 'order_id', 'basket_id', 'id', 'id');
-    }
 }

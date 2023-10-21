@@ -495,5 +495,7 @@
     "Create Category": "Создать Категорию",
     "Update Category": "Обновить Категорию",
     "Order": "Заказ",
-    "Orders": "Заказы"
+    "Orders": "Заказы",
+    "Basket":"Корзина",
+    "Baskets":"Корзины"
 }
