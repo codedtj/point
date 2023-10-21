@@ -58,7 +58,7 @@ Route::resource(
 )->only(['index', 'show', 'store']);
 
 Route::post(
-    'orders',
+    '/orders',
     OrderController::class
 );
 

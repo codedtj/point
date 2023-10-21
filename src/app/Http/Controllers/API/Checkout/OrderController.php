@@ -34,18 +34,17 @@ class OrderController extends ApiController
             abort(400, 'Basket is empty');
         }
 
-        /** @var User $user */
         $user = User::query()
-            ->updateOrCreate(
-                [
-                    'phone' => request('phone'),
-                ],
-                [
-                    'name' => request('name'),
-                    'address' => request('address'),
-                    'password' => bcrypt(Str::random(10))
-                ]
-            );
+            ->where('phone', request('phone'))
+            ->orWhere('email', request('email'))
+            ->first() ?? new User();
+
+        $user->phone = request('phone');
+        $user->email = request('email');
+        $user->name = request('name');
+        $user->address = request('address');
+        $user->password = $user->password ?? bcrypt(Str::random(10));
+        $user->save();
 
         /** @var Order $order */
         $order = Order::query()->firstOrNew(['basket_id' => $basket->id]);
@@ -59,6 +58,6 @@ class OrderController extends ApiController
         $basket->user_id = $user->id;
         $basket->save();
 
-        return $user;
+        return $order;
     }
 }
