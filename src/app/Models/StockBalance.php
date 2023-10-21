@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class StockBalance extends Model
 {
+    protected $casts = [
+        'quantity' => 'float',
+        'base_price' => 'double',
+    ];
+
     public function point(): BelongsTo
     {
         return $this->belongsTo(Point::class);

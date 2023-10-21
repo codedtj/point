@@ -10,7 +10,14 @@ class BasketItemController extends ApiController
 {
     public function index(Basket $basket): Collection|array
     {
-        return $basket->items()->with('category')->get();
+        return $basket->items()
+            ->with('category', 'latestStockBalance')
+            ->get()
+            ->map(function ($item) {
+                $item->price = $item->latestStockBalance->base_price ?? 0;
+                $item->quantity = $item->pivot->quantity;
+                return $item;
+            });
     }
 
     public function store(Basket $basket): void
