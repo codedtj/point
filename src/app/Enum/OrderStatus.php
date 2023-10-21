@@ -5,25 +5,23 @@ namespace App\Enum;
 enum OrderStatus: int
 {
     case Draft = 0;
-    case AwaitingPayment = 1;
-    case PaymentFailed= 2;
-    case PaymentReceived = 3;
-    case Processing = 4;
-    case Shipped = 5;
-    case Delivered = 6;
-    case PickupReady = 7;
-    case OnHold = 8;
-    case Refunded = 9;
-    case Completed = 10;
-    case Returned = 11;
-    case Expired = 12;
-    case Cancelled = 13;
+    case Confirmed = 1;
+    case AwaitingPayment = 2;
+    case PaymentFailed= 3;
+    case PaymentReceived = 4;
+    case Processing = 5;
+    case Shipped = 6;
+    case Delivered = 7;
+    case PickupReady = 8;
+    case OnHold = 9;
+    case Refunded = 10;
+    case Completed = 11;
+    case Returned = 12;
+    case Expired = 13;
+    case Cancelled = 14;
 
     public function editable(): bool
     {
-        return match($this) {
-            self::Draft, self::AwaitingPayment, self::PaymentFailed => true,
-            default => false,
-        };
+        return $this === self::Draft;
     }
 }

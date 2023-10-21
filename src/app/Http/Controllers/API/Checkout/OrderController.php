@@ -12,14 +12,20 @@ use App\Services\Order\OrderService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class ContactController extends ApiController
+class OrderController extends ApiController
 {
     public function __construct(private readonly OrderService $orderService)
     {
     }
 
-    public function __invoke(Basket $basket): Model
+    public function __invoke(): Model
     {
+        $basket = Basket::query()->find(request()->get('basket_id'));
+
+        if (!$basket) {
+            abort(404, 'Basket not found');
+        }
+
         if ($basket->status !== BasketStatus::Active) {
             abort(400, 'Basket is not active');
         }
@@ -32,11 +38,10 @@ class ContactController extends ApiController
         $user = User::query()
             ->updateOrCreate(
                 [
-                    'email' => request('email'),
+                    'phone' => request('phone'),
                 ],
                 [
                     'name' => request('name'),
-                    'phone' => request('phone'),
                     'address' => request('address'),
                     'password' => bcrypt(Str::random(10))
                 ]
@@ -46,7 +51,7 @@ class ContactController extends ApiController
         $order = Order::query()->firstOrNew(['basket_id' => $basket->id]);
         $order->user_id = $user->id;
         $order->basket_id = $basket->id;
-        $order->status = OrderStatus::Processing;
+        $order->status = request('status', OrderStatus::Draft);
         $order->code = $order->code ?? $this->orderService->generateOrderCode();
         $order->save();
 

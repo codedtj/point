@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\OrderStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * @property string $id
@@ -26,5 +27,10 @@ class Order extends Model
     public function basket(): BelongsTo
     {
         return $this->belongsTo(Basket::class);
+    }
+
+    public function items(): HasManyThrough
+    {
+        return $this->hasManyThrough(Item::class, Basket::class, 'order_id', 'basket_id', 'id', 'id');
     }
 }
