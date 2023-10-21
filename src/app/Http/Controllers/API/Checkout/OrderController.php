@@ -18,7 +18,12 @@ class OrderController extends ApiController
     {
     }
 
-    public function __invoke(): Model
+    public function show(Order $order): Model
+    {
+        return $order;
+    }
+
+    public function store(): Model
     {
         $basket = Basket::query()->find(request()->get('basket_id'));
 

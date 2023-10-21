@@ -57,9 +57,9 @@ Route::resource(
     BasketController::class
 )->only(['index', 'show', 'store']);
 
-Route::post(
-    '/orders',
+Route::resource(
+    'orders',
     OrderController::class
-);
+)->only(['show', 'store']);
 
 Route::resource('items', ItemController::class)->only(['show']);
