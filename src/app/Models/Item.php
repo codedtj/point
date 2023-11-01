@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property string $id
- * @property ?float $price
- * @property ?float $base_price
  */
 class Item extends Model
 {
