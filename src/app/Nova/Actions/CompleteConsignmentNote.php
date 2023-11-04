@@ -49,7 +49,6 @@ class CompleteConsignmentNote extends Action
                                 'item_id' => $item->id,
                                 'point_id' => $model->point_id,
                                 'quantity' => 0,
-                                'base_price' => 0,
                             ]
                         );
 
@@ -62,7 +61,6 @@ class CompleteConsignmentNote extends Action
 
                     $balance->update([
                         'quantity' => $newQuantity,
-                        'base_price' => $basePrice,
                     ]);
                 }, 3);
             }
