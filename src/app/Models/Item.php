@@ -41,6 +41,11 @@ class Item extends Model
         return $this->hasMany(StockBalance::class);
     }
 
+    public function price(): HasOne
+    {
+        return $this->hasOne(Price::class)->latest();
+    }
+
     public function priceHistory(): HasMany
     {
         return $this->hasMany(Price::class);
