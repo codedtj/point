@@ -34,7 +34,6 @@ class StockBalance extends Resource
             BelongsTo::make(__('Item'), 'item', Item::class)->required(),
             BelongsTo::make(__('Point'), 'point', Point::class)->required(),
             Number::make(__('Quantity'), 'quantity')->required(),
-            Number::make(__('Base Price'), 'base_price')->required(),
         ];
     }
 }

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enum\OrderStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * @property string $id

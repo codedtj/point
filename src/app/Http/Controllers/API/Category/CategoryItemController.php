@@ -11,7 +11,7 @@ class CategoryItemController extends ApiController
     public function index(Category $category): Paginator
     {
         return $category->items()
-            ->with('consignmentNotes')
+            ->with('consignmentNotes', 'price')
             ->simplePaginate($this->getPerPageValue());
     }
 }

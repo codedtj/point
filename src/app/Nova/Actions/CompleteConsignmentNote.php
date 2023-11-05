@@ -4,6 +4,8 @@ namespace App\Nova\Actions;
 
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
+use App\Models\ConsignmentNote;
+use App\Models\Price;
 use App\Models\StockBalance;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -17,15 +19,9 @@ class CompleteConsignmentNote extends Action
 {
     use InteractsWithQueue, Queueable;
 
-    /**
-     * Perform the action on the given models.
-     *
-     * @param ActionFields $fields
-     * @param Collection $models
-     * @return mixed
-     */
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
+        /** @var ConsignmentNote $model */
         foreach ($models as $model) {
             if ($model->status === ConsignmentNoteStatus::Completed) {
                 continue;
@@ -49,7 +45,6 @@ class CompleteConsignmentNote extends Action
                                 'item_id' => $item->id,
                                 'point_id' => $model->point_id,
                                 'quantity' => 0,
-                                'base_price' => 0,
                             ]
                         );
 
@@ -58,11 +53,21 @@ class CompleteConsignmentNote extends Action
                         ConsignmentNoteType::Out, ConsignmentNoteType::Transfer => $balance->quantity - $item->pivot->quantity,
                     };
 
-                    $basePrice = $item->pivot->price > 0 ? $item->pivot->price : $balance->base_price;
+                    /** @var Price $oldPrice */
+                    $oldPrice = Price::query()
+                        ->where('item_id', $item->id)
+                        ->first();
+
+                    if (!$oldPrice?->manual && $oldPrice?->base !== $item->pivot->price) {
+                        Price::query()
+                            ->create([
+                                'item_id' => $item->id,
+                                'base' => $item->pivot->price,
+                            ]);
+                    }
 
                     $balance->update([
                         'quantity' => $newQuantity,
-                        'base_price' => $basePrice,
                     ]);
                 }, 3);
             }

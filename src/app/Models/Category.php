@@ -4,10 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @property float $quantity
- * @property double $base_price
- */
 class Category extends Model
 {
     public function items(): HasMany

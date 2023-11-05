@@ -10,7 +10,7 @@ class ItemController extends ApiController
     public function show(Item $item): Item
     {
         $item->load('category');
-        $item->price = $item->stockBalances()->latest()->first()->base_price ?? 0;
+        $item->price = $item->price?->base ?? 0;
         return $item;
     }
 }
