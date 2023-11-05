@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property double $base
  * @property ?double $manual
  * @property string $item_id
- * @property string $point_id
+ * @property ?string $point_id
  * @property Item $item
- * @property Point $point
+ * @property ?Point $point
  */
 class Price extends Model
 {

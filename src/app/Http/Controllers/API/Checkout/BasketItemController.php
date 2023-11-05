@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Checkout;
 
 use App\Http\Controllers\API\ApiController;
 use App\Models\Basket;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class BasketItemController extends ApiController
@@ -11,7 +12,7 @@ class BasketItemController extends ApiController
     public function index(Basket $basket): Collection|array
     {
         return $basket->items()
-            ->with('category', 'latestStockBalance')
+            ->with(['category', 'priceHistory' => fn (Builder $query) => $query->latest()])
             ->get()
             ->map(function ($item) {
                 $item->price = $item->latestStockBalance->base_price ?? 0;

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('base');
             $table->double('manual')->nullable();
             $table->foreignUuid('item_id')->index();
-            $table->foreignUuid('point_id')->index();
+            $table->foreignUuid('point_id')->index()->nullable();
             $table->general();
 
             // Define foreign keys to establish relationships with "item" and "point" models
