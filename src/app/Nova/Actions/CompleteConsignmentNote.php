@@ -56,14 +56,12 @@ class CompleteConsignmentNote extends Action
                     /** @var Price $oldPrice */
                     $oldPrice = Price::query()
                         ->where('item_id', $item->id)
-                        ->where('point_id', $model->point_id)
                         ->first();
 
                     if (!$oldPrice?->manual && $oldPrice?->base !== $item->pivot->price) {
                         Price::query()
                             ->create([
                                 'item_id' => $item->id,
-                                'point_id' => $model->point_id,
                                 'base' => $item->pivot->price,
                             ]);
                     }
