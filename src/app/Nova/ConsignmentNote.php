@@ -81,7 +81,7 @@ class ConsignmentNote extends Resource
     public function actions(NovaRequest $request): array
     {
         return [
-            (new Actions\CompleteConsignmentNote())
+             resolve(Actions\CompleteConsignmentNote::class)
                 ->canRun(function ($request, ConsignmentNoteModel $consignmentNote) {
                     return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
                 }),
