@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $point_id
  * @property ConsignmentNoteStatus $status
  * @property ConsignmentNoteType $type
+ * @property Collection<Item> $items
  */
 class ConsignmentNote extends Model
 {

@@ -56,7 +56,7 @@ class OrderController extends ApiController
         $order->user_id = $user->id;
         $order->basket_id = $basket->id;
         $order->status = request('status', OrderStatus::Draft);
-        $order->code = $order->code ?? $this->orderService->generateOrderCode();
+        $order->code = $order->code ?? $this->orderService->generateCode();
         $order->save();
 
         $basket->status = BasketStatus::OrderCreated;
