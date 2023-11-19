@@ -28,7 +28,7 @@ class OrderService
             'status' => $status,
         ]);
 
-        if ($status === OrderStatus::Delivered) {
+        if ($status === OrderStatus::Completed) {
             $consignmentNote = $this->consignmentNoteService
                 ->createFromOrder($order, ConsignmentNoteStatus::Completed);
 
