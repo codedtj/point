@@ -2,18 +2,18 @@
 
 namespace App\Helpers;
 
-class Nova
+class Enum
 {
     /**
      * @throws \ReflectionException
      */
-    public static function getEnumValues(string $enum): array
+    public static function getValues(string $enum): array
     {
-        $options = [];
+        $values = [];
         $reflection = new \ReflectionClass($enum);
         foreach ($reflection->getConstants() as $case) {
-            $options[$case->value] = $case->name;
+            $values[] = $case->value;
         }
-        return $options;
+        return $values;
     }
 }

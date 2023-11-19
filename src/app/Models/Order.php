@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $user_id
  * @property string $basket_id
  * @property string $code
+ * @property Basket $basket
  */
 class Order extends Model
 {

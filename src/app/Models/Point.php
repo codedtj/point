@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property string $id
+ */
 class Point extends Model
 {
     public function consignmentNotes(): HasMany

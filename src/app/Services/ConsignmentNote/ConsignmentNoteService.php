@@ -6,19 +6,25 @@ use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
 use App\Models\ConsignmentNote;
 use App\Models\Order;
+use App\Models\Point;
 use App\Models\Price;
 use App\Models\StockBalance;
 use Illuminate\Support\Facades\DB;
 
 class ConsignmentNoteService
 {
-    public function createFromOrder(Order $order, ConsignmentNoteStatus $status): ConsignmentNote
-    {
+    public function create(
+        Point $point,
+        ConsignmentNoteStatus $status,
+        ConsignmentNoteType $type,
+        int $number
+    ): ConsignmentNote {
         /** @var ConsignmentNote */
         return ConsignmentNote::query()->create([
-            'point_id' => $order->point_id,
+            'point_id' => $point->id,
             'status' => $status,
-            'type' => ConsignmentNoteType::Out
+            'type' => $type,
+            'number' => $number,
         ]);
     }
 

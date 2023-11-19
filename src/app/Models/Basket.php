@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @property string $id
  * @property BasketStatus $status
- * @property Collection $items
+ * @property Collection<Item> $items
  * @property string $user_id
  */
 class Basket extends Model
