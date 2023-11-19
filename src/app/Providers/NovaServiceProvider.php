@@ -32,8 +32,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         Nova::footer(function ($request) {
             return Blade::render('
-            <div>
-                Developed by <a href="https://coded.tj/">coded.tj</a>
+            <div class="text-center">
+                All Rights Reserved. Developed by <a href="https://coded.tj/">coded.tj</a>
             </div>
         ');
         });

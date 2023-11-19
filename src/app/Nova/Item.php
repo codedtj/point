@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -78,7 +79,7 @@ class Item extends Resource
                 ->maxlength(50)
                 ->sortable()
                 ->rules('required'),
-            Text::make(__('Description'), 'description')
+            Markdown::make(__('Description'), 'description')
                 ->nullable(),
             Select::make(__('Item units'), 'unit')
                 ->options(function () {

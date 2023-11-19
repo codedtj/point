@@ -40,3 +40,5 @@ Route::middleware([
 Route::get('/point', function () {
     return Inertia::render('Point');
 })->name('point');
+
+
