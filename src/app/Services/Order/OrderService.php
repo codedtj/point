@@ -2,20 +2,28 @@
 
 namespace App\Services\Order;
 
+use App\Data\Basket\BasketItem;
+use App\Data\Basket\PointBasketItemCollection;
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
 use App\Enum\OrderStatus;
 use App\Models\ConsignmentNote;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\Point;
 use App\Models\StockBalance;
+use App\Repositories\ConsignmentNoteRepository;
 use App\Services\ConsignmentNote\ConsignmentNoteService;
+use App\Services\Item\ItemPriceService;
 use Illuminate\Support\Str;
 
 class OrderService
 {
-    public function __construct(private readonly ConsignmentNoteService $consignmentNoteService)
-    {
+    public function __construct(
+        private readonly ConsignmentNoteService $consignmentNoteService,
+        private readonly ConsignmentNoteRepository $consignmentNoteRepository,
+        private readonly ItemPriceService $itemPriceService,
+    ) {
     }
 
     public function generateCode(): string
@@ -42,30 +50,28 @@ class OrderService
         $points = Point::all();
         $items = $order->basket->items;
 
-        $pointItems = [];
+        $pointBasketItemCollections = [];
 
-        foreach ($items as $item) {
-            foreach ($points as $point) {
-                $allocatedQuantity = 0;
+        foreach ($points as $point) {
+            $pointBasketItemCollections[] = new PointBasketItemCollection($point);
 
-                foreach ($pointItems as $pointItem) {
-                    if(isset($pointItem[$item->id])) {
-                        $allocatedQuantity += $pointItem[$item->id];
-                    }
-                }
+            foreach ($items as $item) {
+                $currentCollectionIndex = count($pointBasketItemCollections) - 1;
+
+                $allocatedQuantity = $this->countAllocatedQuantity($pointBasketItemCollections, $item);
 
                 $toAllocate = $item->pivot->quantity - $allocatedQuantity;
 
                 if ($toAllocate <= 0) {
-                    break;
+                    continue;
                 }
 
                 /** @var StockBalance $stock */
-                $stock = StockBalance::query()
-                    ->where('item_id', $item->id)
-                    ->where('point_id', $point->id)
-                    ->where('quantity', '>', 0)
-                    ->first();
+                $stock = StockBalance::query()->where('item_id', $item->id)->where('point_id', $point->id)->where(
+                        'quantity',
+                        '>',
+                        0
+                    )->first();
 
                 if (!$stock) {
                     continue;
@@ -73,47 +79,59 @@ class OrderService
 
                 $diff = $toAllocate - $stock->quantity;
 
+                $price = $this->itemPriceService->getItemPriceAtPoint($item, $point);
+
                 if ($diff > 0) {
-                    $pointItems[$point->id][$item->id] = $stock->quantity;
+                    $pointBasketItemCollections[$currentCollectionIndex]->addItem(
+                        new BasketItem($item, $stock->quantity, $price)
+                    );
                 } else {
-                    $pointItems[$point->id][$item->id] = $toAllocate;
+                    $pointBasketItemCollections[$currentCollectionIndex]->addItem(
+                        new BasketItem($item, $toAllocate, $price)
+                    );
                 }
             }
         }
 
-        foreach ($points as $point) {
-            if (!isset($pointItems[$point->id])) {
-                continue;
-            }
-
-            $items = $pointItems[$point->id];
-
-            $lastNumber = ConsignmentNote::query()
-                ->select('number')
-                ->latest()
-                ->first()
-                ->number ?? 0;
+        foreach ($pointBasketItemCollections as $collection) {
+            $lastNumber = ConsignmentNote::query()->select('number')->latest()->first()->number ?? 0;
 
             $lastNumber++;
 
-            $consignmentNote = $this->consignmentNoteService
-                ->create(
-                    $point,
+            $consignmentNote = $this->consignmentNoteService->create(
+                    $collection->getPoint(),
                     ConsignmentNoteStatus::Completed,
                     ConsignmentNoteType::Out,
                     $lastNumber
                 );
 
-            foreach ($items as $itemId => $quantity) {
-                $items[$itemId] = ['quantity' => $quantity, 'price' => $items[$itemId]];
-
-                $consignmentNote->items()->attach($itemId, $items[$itemId]);
+            foreach ($collection->getBasketItems() as $basketItem) {
+                $this->consignmentNoteRepository->attachItem(
+                    $consignmentNote,
+                    $basketItem->getItem(),
+                    $basketItem->getQuantity(),
+                    $basketItem->getPrice()
+                );
 
                 if ($consignmentNote->status === ConsignmentNoteStatus::Completed) {
-                    $this->consignmentNoteService
-                        ->processItemStockAndPriceChange($consignmentNote);
+                    $this->consignmentNoteService->processItemStockAndPriceChange($consignmentNote);
                 }
             }
         }
+    }
+
+    private function countAllocatedQuantity(array $pointBasketItemCollections, Item $item): int
+    {
+        $allocatedQuantity = 0;
+
+        foreach ($pointBasketItemCollections as $collection) {
+            $basketItem = $collection->getBasketItem($item->id);
+
+            if ($basketItem) {
+                $allocatedQuantity += $basketItem->getQuantity();
+            }
+        }
+
+        return $allocatedQuantity;
     }
 }
