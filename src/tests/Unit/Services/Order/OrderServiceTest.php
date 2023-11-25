@@ -28,7 +28,7 @@ class OrderServiceTest extends TestCase
         $this->orderService = app(OrderService::class);
     }
 
-    public function test_consignment_notes_created_for_each_point()
+    public function testConsignmentNotesCreatedForEachPoint()
     {
         $item = Item::factory()->create();
         $points = $this->createPointsWithStockBalances($item);
