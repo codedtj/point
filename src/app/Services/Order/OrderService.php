@@ -94,28 +94,40 @@ class OrderService
         }
 
         foreach ($pointBasketItemCollections as $collection) {
-            $lastNumber = ConsignmentNote::query()->select('number')->latest()->first()->number ?? 0;
+            if (count($collection->getBasketItems()) === 0) {
+                continue;
+            }
 
-            $lastNumber++;
+            $this->createConsignmentNoteForPoint($collection->getPoint(), $collection->getBasketItems());
+        }
+    }
 
-            $consignmentNote = $this->consignmentNoteService->create(
-                    $collection->getPoint(),
-                    ConsignmentNoteStatus::Completed,
-                    ConsignmentNoteType::Out,
-                    $lastNumber
-                );
+    /**
+     * @param array<BasketItem> $basketItems
+     */
+    private function createConsignmentNoteForPoint(Point $point, array $basketItems): void
+    {
+        $lastNumber = ConsignmentNote::query()->select('number')->latest()->first()->number ?? 0;
 
-            foreach ($collection->getBasketItems() as $basketItem) {
-                $this->consignmentNoteRepository->attachItem(
-                    $consignmentNote,
-                    $basketItem->getItem(),
-                    $basketItem->getQuantity(),
-                    $basketItem->getPrice()
-                );
+        $lastNumber++;
 
-                if ($consignmentNote->status === ConsignmentNoteStatus::Completed) {
-                    $this->consignmentNoteService->processItemStockAndPriceChange($consignmentNote);
-                }
+        $consignmentNote = $this->consignmentNoteService->create(
+            $point,
+            ConsignmentNoteStatus::Completed,
+            ConsignmentNoteType::Out,
+            $lastNumber
+        );
+
+        foreach ($basketItems as $basketItem) {
+            $this->consignmentNoteRepository->attachItem(
+                $consignmentNote,
+                $basketItem->getItem(),
+                $basketItem->getQuantity(),
+                $basketItem->getPrice()
+            );
+
+            if ($consignmentNote->status === ConsignmentNoteStatus::Completed) {
+                $this->consignmentNoteService->processItemStockAndPriceChange($consignmentNote);
             }
         }
     }
