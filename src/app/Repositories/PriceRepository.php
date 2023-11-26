@@ -10,7 +10,7 @@ class PriceRepository
 {
     public function lastByItemAndPoint(Item $item, Point $point): ?Price
     {
-        /** @var Price */
+        /** @var ?Price */
         return $item->priceHistory()
             ->where('point_id', $point->id)
             ->latest()

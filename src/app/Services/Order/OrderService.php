@@ -13,16 +13,21 @@ use App\Models\Order;
 use App\Models\Point;
 use App\Models\StockBalance;
 use App\Repositories\ConsignmentNoteRepository;
+use App\Repositories\PointRepository;
+use App\Repositories\StockBalanceRepository;
 use App\Services\ConsignmentNote\ConsignmentNoteService;
 use App\Services\Item\ItemPriceService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 class OrderService
 {
     public function __construct(
         private readonly ConsignmentNoteService $consignmentNoteService,
+        private readonly PointRepository $pointRepository,
         private readonly ConsignmentNoteRepository $consignmentNoteRepository,
         private readonly ItemPriceService $itemPriceService,
+        private readonly StockBalanceRepository $stockBalanceRepository
     ) {
     }
 
@@ -41,13 +46,22 @@ class OrderService
         ]);
 
         if ($status === OrderStatus::Completed) {
-            $this->createConsignmentNotesForPoints($order);
+            $this->processOrderCompletion($order);
         }
     }
 
-    private function createConsignmentNotesForPoints(Order $order): void
+    private function processOrderCompletion(Order $order): void
     {
-        $points = Point::all();
+        $points = $this->pointRepository->all();
+        $pointBasketItemCollections = $this->allocateItems($points, $order);
+        $this->createConsignmentNotes($pointBasketItemCollections);
+    }
+
+    /**
+     * @return array<PointBasketItemCollection>
+     */
+    private function allocateItems(Collection $points, Order $order): array
+    {
         $items = $order->basket->items;
 
         $pointBasketItemCollections = [];
@@ -67,32 +81,43 @@ class OrderService
                 }
 
                 /** @var StockBalance $stock */
-                $stock = StockBalance::query()->where('item_id', $item->id)->where('point_id', $point->id)->where(
-                        'quantity',
-                        '>',
-                        0
-                    )->first();
+                $stock = $this->stockBalanceRepository->firstByItemAndPoint($item, $point);
 
-                if (!$stock) {
+                if (!$stock || $stock->quantity === 0.0) {
                     continue;
                 }
 
-                $diff = $toAllocate - $stock->quantity;
-
                 $price = $this->itemPriceService->getItemPriceAtPoint($item, $point);
-
-                if ($diff > 0) {
-                    $pointBasketItemCollections[$currentCollectionIndex]->addItem(
-                        new BasketItem($item, $stock->quantity, $price)
-                    );
-                } else {
-                    $pointBasketItemCollections[$currentCollectionIndex]->addItem(
-                        new BasketItem($item, $toAllocate, $price)
-                    );
-                }
+                $quantityToAdd = min($toAllocate, $stock->quantity);
+                $pointBasketItemCollections[$currentCollectionIndex]->addItem(
+                    new BasketItem($item, $quantityToAdd, $price)
+                );
             }
         }
 
+        return $pointBasketItemCollections;
+    }
+
+    private function countAllocatedQuantity(array $pointBasketItemCollections, Item $item): int
+    {
+        $allocatedQuantity = 0;
+
+        foreach ($pointBasketItemCollections as $collection) {
+            $basketItem = $collection->getBasketItem($item->id);
+
+            if ($basketItem) {
+                $allocatedQuantity += $basketItem->getQuantity();
+            }
+        }
+
+        return $allocatedQuantity;
+    }
+
+    /**
+     * @param array<PointBasketItemCollection> $pointBasketItemCollections
+     */
+    private function createConsignmentNotes(array $pointBasketItemCollections): void
+    {
         foreach ($pointBasketItemCollections as $collection) {
             if (count($collection->getBasketItems()) === 0) {
                 continue;
@@ -130,20 +155,5 @@ class OrderService
                 $this->consignmentNoteService->processItemStockAndPriceChange($consignmentNote);
             }
         }
-    }
-
-    private function countAllocatedQuantity(array $pointBasketItemCollections, Item $item): int
-    {
-        $allocatedQuantity = 0;
-
-        foreach ($pointBasketItemCollections as $collection) {
-            $basketItem = $collection->getBasketItem($item->id);
-
-            if ($basketItem) {
-                $allocatedQuantity += $basketItem->getQuantity();
-            }
-        }
-
-        return $allocatedQuantity;
     }
 }
