@@ -9,10 +9,16 @@ use App\Models\Order;
 use App\Models\Point;
 use App\Models\Price;
 use App\Models\StockBalance;
+use App\Services\Item\ItemPriceService;
 use Illuminate\Support\Facades\DB;
 
 class ConsignmentNoteService
 {
+    public function __construct(
+        private readonly ItemPriceService $itemPriceService,
+    ) {
+    }
+
     public function create(
         Point $point,
         ConsignmentNoteStatus $status,
@@ -38,7 +44,7 @@ class ConsignmentNoteService
     private function processSingleItem($item, ConsignmentNote $consignmentNote): void
     {
         $balance = $this->getStockBalance($item, $consignmentNote);
-        $this->updatePriceIfNeeded($item);
+        $this->itemPriceService->updatePriceIfChanged($item, $consignmentNote->point, $item->pivot->price);
         $this->updateStockQuantity($balance, $item, $consignmentNote);
     }
 
@@ -56,18 +62,6 @@ class ConsignmentNoteService
                 'quantity' => 0,
             ]
         );
-    }
-
-    private function updatePriceIfNeeded($item): void
-    {
-        /** @var Price $oldPrice*/
-        $oldPrice = Price::query()->where('item_id', $item->id)->first();
-        if (!$oldPrice?->manual && $oldPrice?->base !== $item->pivot->price) {
-            Price::query()->create([
-                'item_id' => $item->id,
-                'base' => $item->pivot->price,
-            ]);
-        }
     }
 
     private function updateStockQuantity(StockBalance $balance, $item, ConsignmentNote $consignmentNote): void
