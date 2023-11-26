@@ -150,10 +150,8 @@ class OrderService
                 $basketItem->getQuantity(),
                 $basketItem->getPrice()
             );
-
-            if ($consignmentNote->status === ConsignmentNoteStatus::Completed) {
-                $this->consignmentNoteService->processCompletedConsignmentNote($consignmentNote);
-            }
         }
+
+        $this->consignmentNoteService->processCompletedConsignmentNote($consignmentNote);
     }
 }
