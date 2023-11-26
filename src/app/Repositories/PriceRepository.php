@@ -16,4 +16,9 @@ class PriceRepository
             ->latest()
             ->first();
     }
+
+    public function save(Price $price): bool
+    {
+        return $price->save();
+    }
 }

@@ -28,7 +28,7 @@ class ConsignmentNoteService
         ]);
     }
 
-    public function processItemStockAndPriceChange(ConsignmentNote $consignmentNote): void
+    public function processCompletedConsignmentNote(ConsignmentNote $consignmentNote): void
     {
         foreach ($consignmentNote->items as $item) {
             DB::transaction(fn () => $this->processSingleItem($item, $consignmentNote), 3);
@@ -37,12 +37,12 @@ class ConsignmentNoteService
 
     private function processSingleItem($item, ConsignmentNote $consignmentNote): void
     {
-        $balance = $this->updateStockBalance($item, $consignmentNote);
+        $balance = $this->getStockBalance($item, $consignmentNote);
         $this->updatePriceIfNeeded($item);
-        $this->finalizeStockBalanceUpdate($balance, $item, $consignmentNote);
+        $this->updateStockQuantity($balance, $item, $consignmentNote);
     }
 
-    private function updateStockBalance($item, ConsignmentNote $consignmentNote): StockBalance
+    private function getStockBalance($item, ConsignmentNote $consignmentNote): StockBalance
     {
         /** @var StockBalance */
         return StockBalance::query()->firstOrCreate(
@@ -70,7 +70,7 @@ class ConsignmentNoteService
         }
     }
 
-    private function finalizeStockBalanceUpdate(StockBalance $balance, $item, ConsignmentNote $consignmentNote): void
+    private function updateStockQuantity(StockBalance $balance, $item, ConsignmentNote $consignmentNote): void
     {
         $newQuantity = $this->calculateNewQuantity($balance, $item, $consignmentNote);
         $balance->update(['quantity' => $newQuantity]);

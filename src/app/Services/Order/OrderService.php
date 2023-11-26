@@ -152,7 +152,7 @@ class OrderService
             );
 
             if ($consignmentNote->status === ConsignmentNoteStatus::Completed) {
-                $this->consignmentNoteService->processItemStockAndPriceChange($consignmentNote);
+                $this->consignmentNoteService->processCompletedConsignmentNote($consignmentNote);
             }
         }
     }

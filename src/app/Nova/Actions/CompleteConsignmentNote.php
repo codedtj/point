@@ -32,7 +32,7 @@ class CompleteConsignmentNote extends Action
                 'status' => ConsignmentNoteStatus::Completed,
             ]);
 
-            $this->consignmentNoteService->processItemStockAndPriceChange($model);
+            $this->consignmentNoteService->processCompletedConsignmentNote($model);
         }
 
         return Action::message(__('Consignment note(s) completed!'));
