@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property ConsignmentNoteStatus $status
  * @property ConsignmentNoteType $type
  * @property Collection<Item> $items
+ * @property Point $point
  */
 class ConsignmentNote extends Model
 {
