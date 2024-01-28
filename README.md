@@ -1,4 +1,4 @@
-# echo-backend
+# Point
 
 * [Prerequisites](#prerequisites)
 * [First launch](#first-launch)
