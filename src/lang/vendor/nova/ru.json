@@ -450,6 +450,7 @@
     "Item code": "Артикул",
     "Description": "Описание",
     "Quantity": "Количество",
+    "Total price": "Суммарная стоимость",
     "Item units": "Единицы",
     "Item": "Товар",
     "Items": "Товары",
@@ -501,6 +502,7 @@
     "Admin": "Управление",
     "Warehouse": "Склад",
     "Sales": "Продажи",
+    "Reports": "Отчеты",
     "Created At": "Дата создания",
     "Mark as completed": "Пометить как выполненный",
     "Order(s) marked as completed!": "Заказ(ы) помечен(ы) как выполненный(е)!"
