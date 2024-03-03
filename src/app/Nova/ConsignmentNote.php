@@ -73,6 +73,7 @@ class ConsignmentNote extends Resource
                 ->exceptOnForms(),
             BelongsToMany::make(__('Items'), 'items', Item::class)
                 ->required()
+                ->searchable()
                 ->fields(function ($request, $relatedModel) {
                     return [
                         Number::make(__('Quantity'), 'quantity')->rules('required'),
