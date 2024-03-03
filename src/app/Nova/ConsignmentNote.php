@@ -7,6 +7,7 @@ use App\Enum\ConsignmentNoteType;
 use App\Models\ConsignmentNote as ConsignmentNoteModel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
@@ -56,7 +57,13 @@ class ConsignmentNote extends Resource
                 }),
             BelongsTo::make(__('Destination'), 'destinationPoint', Point::class)
                 ->required()
-                ->withoutTrashed(),
+                ->withoutTrashed()
+                ->dependsOn('type',
+                    function (BelongsTo $field, NovaRequest $request, FormData $formData) {
+                        if ($formData->type === ConsignmentNoteType::Transfer->value) {
+                            $field->show();
+                        }
+                    })->hide(),
             Select::make(__('Status'), 'status')
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteStatus::from($value)->name);
