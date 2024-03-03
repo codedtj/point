@@ -58,6 +58,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           exclude: |
             **/node_modules/**
+            **/storage/**
             **/tests/**
             .env
           localDir: src
