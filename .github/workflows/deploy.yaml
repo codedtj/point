@@ -14,15 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: cd into the directory
-        run: cd src && echo "Moved to src directory"
-
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
+        working-directory: ./src
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v3
+        working-directory: ./src
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
