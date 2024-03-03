@@ -19,7 +19,7 @@ jobs:
         working-directory: ./src
 
       - name: Set Nova credentials
-        run: composer config -a -g http-basic.nova.laravel.com \ ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_LICENSE_KEY }}
+        run: composer config -a -g http-basic.packages.nova.laravel.com \ ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_LICENSE_KEY }}
 
       - name: Cache Composer packages
         id: composer-cache
