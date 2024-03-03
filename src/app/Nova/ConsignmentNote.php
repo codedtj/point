@@ -56,16 +56,15 @@ class ConsignmentNote extends Resource
                     return $this->getTranslation(ConsignmentNoteType::from($value)->name);
                 }),
             BelongsTo::make(__('Destination'), 'destinationPoint', Point::class)
-                ->required()
                 ->withoutTrashed()
+                ->hide()
                 ->dependsOn(
                     'type',
                     function (BelongsTo $field, NovaRequest $request, FormData $formData) {
                         if ($formData->type === ConsignmentNoteType::Transfer->value) {
-                            $field->show();
+                            $field->show()->rules('required');
                         }
-                    })
-                ->hide(),
+                    }),
             Select::make(__('Status'), 'status')
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteStatus::from($value)->name);
