@@ -58,6 +58,7 @@ class ConsignmentNote extends Resource
             BelongsTo::make(__('Destination'), 'destinationPoint', Point::class)
                 ->withoutTrashed()
                 ->hide()
+                ->nullable()
                 ->dependsOn(
                     'type',
                     function (BelongsTo $field, NovaRequest $request, FormData $formData) {
