@@ -41,21 +41,20 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
 
-publish:
+  publish:
+    needs: build
 
-  needs: build
-
-  - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        exclude: |
-          **/node_modules/**
-          **/storage/**
-          **/tests/**
-          .env
-        localDir: src
+    - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          exclude: |
+            **/node_modules/**
+            **/storage/**
+            **/tests/**
+            .env
+          localDir: src
 
 
