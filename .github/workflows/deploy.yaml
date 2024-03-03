@@ -29,6 +29,7 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
+        working-directory: ./src
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4
