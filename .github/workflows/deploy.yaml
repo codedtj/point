@@ -10,14 +10,12 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
       - name: cd into the directory
-        run: cd src
+        run: cd src && echo "Moved to src directory"
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -38,13 +36,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
+
       - run: npm ci
       - run: npm run build --if-present
 
   publish:
     needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-    - name: Sync files
+      - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -56,5 +58,3 @@ jobs:
             **/tests/**
             .env
           localDir: src
-
-
