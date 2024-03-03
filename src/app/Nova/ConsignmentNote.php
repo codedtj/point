@@ -54,6 +54,9 @@ class ConsignmentNote extends Resource
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteType::from($value)->name);
                 }),
+            BelongsTo::make(__('Destination'), 'destinationPoint', Point::class)
+                ->required()
+                ->withoutTrashed(),
             Select::make(__('Status'), 'status')
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteStatus::from($value)->name);
