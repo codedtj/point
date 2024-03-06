@@ -35,10 +35,8 @@ class Item extends Resource
      * @var array
      */
     public static $search = [
-        'id',
         'title',
         'code',
-        'description'
     ];
 
     /**
