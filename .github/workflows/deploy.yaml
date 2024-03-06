@@ -66,3 +66,20 @@ jobs:
             **/tests/**
             .env
           local-dir: src/
+
+      - name: Run migrations
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd src
+            /opt/php81/bin/php artisan migrate
+            /opt/php81/bin/php artisan storage:link
+            /opt/php81/bin/php artisan nova:publish
+            
+            
+
+            
+
