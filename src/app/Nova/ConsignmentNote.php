@@ -40,7 +40,9 @@ class ConsignmentNote extends Resource
     {
         return [
             ID::make()->sortable()->hide(),
-            Text::make(__('Number'), 'number')->sortable()->rules('required'),
+            Text::make(__('Number'), 'number')
+                ->sortable()
+                ->rules('required','unique:consignment_notes,number', 'numeric', 'integer'),
             BelongsTo::make(__('Point'), 'point', Point::class)->required()->withoutTrashed(),
             Select::make(__('Type'), 'type')
                 ->options(function () {
