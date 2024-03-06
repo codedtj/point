@@ -76,7 +76,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           command_timeout: 30m
           script: |
-            cd src
+            cd point.coded.tj
             /opt/php81/bin/php artisan migrate
             /opt/php81/bin/php artisan storage:link
             /opt/php81/bin/php artisan nova:publish
