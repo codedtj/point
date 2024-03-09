@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y ca-certificates curl gnupg \
     && apt-get install -y nodejs \
     && npm install -g npm
 
+RUN ln -sf /bin/bash /bin/sh
+
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
