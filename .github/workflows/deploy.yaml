@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -60,12 +60,6 @@ jobs:
             **/tests/**
             .env
           local-dir: src/
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
       - name: Run commands on remote server
         uses: appleboy/ssh-action@v0.1.10
