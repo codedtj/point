@@ -14,6 +14,8 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Currency;
+use Ramsey\Uuid\Type\Decimal;
 
 
 class ConsignmentNote extends Resource
@@ -94,11 +96,12 @@ class ConsignmentNote extends Resource
             BelongsToMany::make(__('Items'), 'items', Item::class)
                 ->required()
                 ->searchable()
-                ->fields(function ($request, $relatedModel) {
+                ->fields(function (){
                     return [
                         Number::make(__('Quantity'), 'quantity')->rules('required'),
                         Number::make(__('Price'), 'price')
                             ->min(0)
+                            ->step('any')
                             ->default(0)
                             ->rules('required'),
                     ];
