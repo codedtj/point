@@ -58,6 +58,7 @@ jobs:
             **/node_modules/**
             **/storage/**
             **/tests/**
+            **/vendor/**
             .env
           local-dir: src/
 
@@ -71,6 +72,7 @@ jobs:
           command_timeout: 30m
           script: |
             cd point.coded.tj
+            /opt/php81/bin/php ../composer.phar install --no-dev
             /opt/php81/bin/php artisan migrate
             /opt/php81/bin/php artisan storage:link
             /opt/php81/bin/php artisan nova:publish
