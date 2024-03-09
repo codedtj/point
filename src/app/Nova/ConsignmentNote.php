@@ -67,7 +67,10 @@ class ConsignmentNote extends Resource
                         if ($formData->type === ConsignmentNoteType::Transfer->value) {
                             $field->show()->rules('required');
                         }
-                    }),
+                    })
+                ->showOnDetail(function (NovaRequest $request, ConsignmentNoteModel $resource) {
+                    return $resource->type === ConsignmentNoteType::Transfer;
+                }),
             Text::make(__('Counterparty'), 'counterparty')
                 ->nullable()
                 ->dependsOn(
@@ -78,7 +81,10 @@ class ConsignmentNote extends Resource
                         } else {
                             $field->hide();
                         }
-                    }),
+                    })
+                ->showOnDetail(function (NovaRequest $request, ConsignmentNoteModel $resource) {
+                    return $resource->type !== ConsignmentNoteType::Transfer;
+                }),
             Select::make(__('Status'), 'status')
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteStatus::from($value)->name);
