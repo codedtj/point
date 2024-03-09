@@ -47,7 +47,7 @@ class Order extends Resource
                 ->canRun(function ($request, OrderModel $order) {
                     return $order->status !== OrderStatus::Completed;
                 }),
-            (new DownloadExcel)->withHeadings()
+            (new DownloadExcel)->withHeadings()->withoutConfirmation()
         ];
     }
 }

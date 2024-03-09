@@ -118,7 +118,7 @@ class ConsignmentNote extends Resource
                 ->canRun(function ($request, ConsignmentNoteModel $consignmentNote) {
                     return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
                 }),
-            (new DownloadExcel)->withHeadings()
+            (new DownloadExcel)->withHeadings()->withoutConfirmation()
         ];
     }
 }

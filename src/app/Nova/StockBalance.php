@@ -44,7 +44,7 @@ class StockBalance extends Resource
     public function actions(NovaRequest $request)
     {
         return [
-            (new DownloadExcel)->withHeadings()
+            (new DownloadExcel)->withHeadings()->withoutConfirmation()
         ];
     }
 }
