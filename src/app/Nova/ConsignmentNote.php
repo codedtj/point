@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 
 class ConsignmentNote extends Resource
@@ -117,6 +118,7 @@ class ConsignmentNote extends Resource
                 ->canRun(function ($request, ConsignmentNoteModel $consignmentNote) {
                     return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
                 }),
+            new DownloadExcel()
         ];
     }
 }

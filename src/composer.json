@@ -14,6 +14,7 @@
         "laravel/nova": "~4.0",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "maatwebsite/laravel-nova-excel": "^1.3",
         "tightenco/ziggy": "^1.0",
         "wildside/userstamps": "^2.3"
     },
