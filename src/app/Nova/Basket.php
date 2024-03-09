@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Export\DownloadExcel;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
@@ -37,6 +38,13 @@ class Basket extends Resource
                     ];
                 })
 
+        ];
+    }
+
+    public function actions(NovaRequest $request)
+    {
+        return [
+            (new DownloadExcel)->withHeadings()
         ];
     }
 }

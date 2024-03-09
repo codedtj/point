@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
 use App\Models\ConsignmentNote as ConsignmentNoteModel;
+use App\Nova\Actions\Export\DownloadExcel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\FormData;
@@ -13,7 +14,6 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 
 class ConsignmentNote extends Resource

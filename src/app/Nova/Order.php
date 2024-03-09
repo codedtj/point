@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enum\OrderStatus;
 use App\Models\Order as OrderModel;
+use App\Nova\Actions\Export\DownloadExcel;
 use App\Nova\Actions\Order\CompleteOrder;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -45,7 +46,8 @@ class Order extends Resource
             resolve(CompleteOrder::class)
                 ->canRun(function ($request, OrderModel $order) {
                     return $order->status !== OrderStatus::Completed;
-                })
+                }),
+            (new DownloadExcel)->withHeadings()
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Export\DownloadExcel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -37,6 +38,13 @@ class StockBalance extends Resource
             Number::make(__('Total price'), function () {
                 return $this->quantity * $this->item->price->base;
             }),
+        ];
+    }
+
+    public function actions(NovaRequest $request)
+    {
+        return [
+            (new DownloadExcel)->withHeadings()
         ];
     }
 }
