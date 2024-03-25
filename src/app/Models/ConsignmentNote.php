@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $id
  * @property string $point_id
  * @property ?string destination_point_id
+ * @property ?string $counterparty
  * @property ConsignmentNoteStatus $status
  * @property ConsignmentNoteType $type
  * @property Collection<Item> $items

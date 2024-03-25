@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
 use App\Models\ConsignmentNote as ConsignmentNoteModel;
+use App\Nova\Actions\Export\DownloadExcel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\FormData;
@@ -57,7 +58,7 @@ class ConsignmentNote extends Resource
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteType::from($value)->name);
                 }),
-            BelongsTo::make(__('Destination'), 'destinationPoint', Point::class)
+            BelongsTo::make(__('Destination Point'), 'destinationPoint', Point::class)
                 ->withoutTrashed()
                 ->hide()
                 ->nullable()
@@ -67,7 +68,24 @@ class ConsignmentNote extends Resource
                         if ($formData->type === ConsignmentNoteType::Transfer->value) {
                             $field->show()->rules('required');
                         }
-                    }),
+                    })
+                ->showOnDetail(function (NovaRequest $request, ConsignmentNoteModel $resource) {
+                    return $resource->type === ConsignmentNoteType::Transfer;
+                }),
+            Text::make(__('Counterparty'), 'counterparty')
+                ->nullable()
+                ->dependsOn(
+                    'type',
+                    function (Text $field, NovaRequest $request, FormData $formData) {
+                        if ($formData->type !== ConsignmentNoteType::Transfer->value) {
+                            $field->show();
+                        } else {
+                            $field->hide();
+                        }
+                    })
+                ->showOnDetail(function (NovaRequest $request, ConsignmentNoteModel $resource) {
+                    return $resource->type !== ConsignmentNoteType::Transfer;
+                }),
             Select::make(__('Status'), 'status')
                 ->displayUsing(function ($value) {
                     return $this->getTranslation(ConsignmentNoteStatus::from($value)->name);
@@ -100,6 +118,7 @@ class ConsignmentNote extends Resource
                 ->canRun(function ($request, ConsignmentNoteModel $consignmentNote) {
                     return $consignmentNote->status !== ConsignmentNoteStatus::Completed;
                 }),
+            (new DownloadExcel)->withHeadings()->withoutConfirmation()
         ];
     }
 }

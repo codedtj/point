@@ -505,5 +505,8 @@
     "Reports": "Отчеты",
     "Created At": "Дата создания",
     "Mark as completed": "Пометить как выполненный",
-    "Order(s) marked as completed!": "Заказ(ы) помечен(ы) как выполненный(е)!"
+    "Order(s) marked as completed!": "Заказ(ы) помечен(ы) как выполненный(е)!",
+    "Destination Point": "Точка назначения",
+    "Counterparty": "Контрагент",
+    "Download Excel": "Скачать в Excel"
 }
