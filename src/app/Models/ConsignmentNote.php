@@ -40,6 +40,6 @@ class ConsignmentNote extends Model
     {
         return $this->belongsToMany(Item::class)
             ->using(Pivot::class)
-            ->withPivot(['quantity', 'price']);
+            ->withPivot(['quantity', 'prime_cost']);
     }
 }

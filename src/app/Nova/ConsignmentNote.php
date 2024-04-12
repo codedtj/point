@@ -97,7 +97,7 @@ class ConsignmentNote extends Resource
                 ->fields(function ($request, $relatedModel) {
                     return [
                         Number::make(__('Quantity'), 'quantity')->rules('required'),
-                        Number::make(__('Price'), 'price')
+                        Number::make(__('Prime cost'), 'prime_cost')
                             ->min(0)
                             ->default(0)
                             ->rules('required'),
