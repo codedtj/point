@@ -21,6 +21,9 @@ class ItemPriceService
         return $price ? ($price->manual ?? $price->base) : 0;
     }
 
+    /**
+     * @todo remove? not used?
+     */
     public function updatePriceIfChanged(Item $item, Point $point, float $price): void
     {
         $lastPrice = $this->priceRepository->lastByItemAndPoint($item, $point);

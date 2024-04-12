@@ -44,7 +44,6 @@ class ConsignmentNoteService
     private function processSingleItem($item, ConsignmentNote $consignmentNote): void
     {
         $balance = $this->getStockBalance($item, $consignmentNote);
-        $this->itemPriceService->updatePriceIfChanged($item, $consignmentNote->point, $item->pivot->price);
         $this->updateStockQuantity($balance, $item, $consignmentNote);
     }
 
