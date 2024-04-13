@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('metas', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->timestamps();
             $table->string('key')->index();
             $table->json('value');
+            $table->general();
         });
     }
 

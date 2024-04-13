@@ -32,7 +32,6 @@ class AppServiceProvider extends ServiceProvider
 
         Blueprint::macro('general', function (){
             $this->userstamps();
-            $this->boolean('is_synced')->default(false);
             $this->timestamps();
             $this->softDeletes();
         });
