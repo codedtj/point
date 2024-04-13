@@ -28,7 +28,7 @@ class Item extends Model
     {
         return $this->belongsToMany(ConsignmentNote::class)
             ->using(Pivot::class)
-            ->withPivot(['quantity', 'price']);
+            ->withPivot(['quantity', 'prime_cost']);
     }
 
     public function latestStockBalance(): HasOne

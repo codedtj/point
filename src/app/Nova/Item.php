@@ -96,6 +96,7 @@ class Item extends Resource
                 ->fields(function ($request, $relatedModel) {
                     return [
                         Number::make(__('Quantity'), 'quantity'),
+                        Number::make(__('Prime cost'), 'prime_cost')
                     ];
                 }),
             BelongsTo::make(__("Category"), 'category', Category::class)
