@@ -4,11 +4,11 @@ namespace Core\Infrastructure\Http\Controllers\API\Checkout;
 
 use App\Enum\BasketStatus;
 use App\Enum\OrderStatus;
-use App\Models\Basket;
-use App\Models\Order;
-use App\Models\User;
 use App\Services\Order\OrderService;
 use Core\Infrastructure\Http\Controllers\API\ApiController;
+use Core\Infrastructure\Persistence\Models\Basket;
+use Core\Infrastructure\Persistence\Models\Order;
+use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 

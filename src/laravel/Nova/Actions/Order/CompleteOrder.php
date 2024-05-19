@@ -3,8 +3,8 @@
 namespace App\Nova\Actions\Order;
 
 use App\Enum\OrderStatus;
-use App\Models\Order;
 use App\Services\Order\OrderService;
+use Core\Infrastructure\Persistence\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;

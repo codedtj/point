@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Order;
 use App\Observers\OrderObserver;
+use Core\Infrastructure\Persistence\Models\Order;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

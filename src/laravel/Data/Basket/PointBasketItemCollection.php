@@ -2,7 +2,7 @@
 
 namespace App\Data\Basket;
 
-use App\Models\Point;
+use Core\Infrastructure\Persistence\Models\Point;
 
 class PointBasketItemCollection
 {

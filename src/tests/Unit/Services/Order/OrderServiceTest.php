@@ -3,14 +3,14 @@
 namespace Tests\Unit\Services\Order;
 
 use App\Enum\OrderStatus;
-use App\Models\Basket;
-use App\Models\ConsignmentNote;
-use App\Models\Item;
-use App\Models\Order;
-use App\Models\Point;
-use App\Models\StockBalance;
-use App\Models\User;
 use App\Services\Order\OrderService;
+use Core\Infrastructure\Persistence\Models\Basket;
+use Core\Infrastructure\Persistence\Models\ConsignmentNote;
+use Core\Infrastructure\Persistence\Models\Item;
+use Core\Infrastructure\Persistence\Models\Order;
+use Core\Infrastructure\Persistence\Models\Point;
+use Core\Infrastructure\Persistence\Models\StockBalance;
+use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

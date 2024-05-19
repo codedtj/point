@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Core\Infrastructure\Persistence\Models;
 
 use App\Enum\BasketStatus;
 use Illuminate\Database\Eloquent\Collection;

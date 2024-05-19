@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Point;
+use Core\Infrastructure\Persistence\Models\Point;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

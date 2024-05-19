@@ -2,8 +2,8 @@
 
 namespace Core\Infrastructure\Http\Controllers\API\Item;
 
-use App\Models\Item;
 use Core\Infrastructure\Http\Controllers\API\ApiController;
+use Core\Infrastructure\Persistence\Models\Item;
 
 class ItemController extends ApiController
 {

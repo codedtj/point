@@ -12,9 +12,9 @@ class Category extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Category>
+     * @var class-string<\Core\Infrastructure\Persistence\Models\Category>
      */
-    public static string $model = \App\Models\Category::class;
+    public static string $model = \Core\Infrastructure\Persistence\Models\Category::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

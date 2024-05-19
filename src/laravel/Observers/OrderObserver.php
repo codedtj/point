@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\OrderCreated;
-use App\Models\Order;
+use Core\Infrastructure\Persistence\Models\Order;
 use Illuminate\Support\Facades\Mail;
 
 class OrderObserver

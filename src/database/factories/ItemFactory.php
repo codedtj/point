@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Enum\Unit;
 use App\Helpers\Enum;
-use App\Models\Item;
+use Core\Infrastructure\Persistence\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

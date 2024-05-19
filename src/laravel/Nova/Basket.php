@@ -12,7 +12,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Basket extends Resource
 {
-    public static string $model =  \App\Models\Basket::class;
+    public static string $model =  \Core\Infrastructure\Persistence\Models\Basket::class;
 
     public static function label(): string
     {

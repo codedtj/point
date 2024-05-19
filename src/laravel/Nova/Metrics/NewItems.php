@@ -2,8 +2,7 @@
 
 namespace App\Nova\Metrics;
 
-use App\Models\Item;
-use App\Models\User;
+use Core\Infrastructure\Persistence\Models\Item;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 

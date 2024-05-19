@@ -3,9 +3,9 @@
 namespace App\Nova;
 
 use App\Enum\OrderStatus;
-use App\Models\Order as OrderModel;
 use App\Nova\Actions\Export\DownloadExcel;
 use App\Nova\Actions\Order\CompleteOrder;
+use Core\Infrastructure\Persistence\Models\Order as OrderModel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;

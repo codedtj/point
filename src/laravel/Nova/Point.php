@@ -9,7 +9,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Point extends Resource
 {
-    public static string $model = \App\Models\Point::class;
+    public static string $model = \Core\Infrastructure\Persistence\Models\Point::class;
 
     public static $title = 'name';
 

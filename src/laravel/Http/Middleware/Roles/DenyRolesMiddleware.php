@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware\Roles;
 
-use App\Models\User;
 use Closure;
+use Core\Infrastructure\Persistence\Models\User;
 
 class DenyRolesMiddleware
 {

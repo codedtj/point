@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use App\Enum\BasketStatus;
 use App\Helpers\Enum;
-use App\Models\Basket;
-use App\Models\User;
+use Core\Infrastructure\Persistence\Models\Basket;
+use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BasketFactory extends Factory

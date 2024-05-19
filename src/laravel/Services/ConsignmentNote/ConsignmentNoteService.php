@@ -4,12 +4,10 @@ namespace App\Services\ConsignmentNote;
 
 use App\Enum\ConsignmentNoteStatus;
 use App\Enum\ConsignmentNoteType;
-use App\Models\ConsignmentNote;
-use App\Models\Order;
-use App\Models\Point;
-use App\Models\Price;
-use App\Models\StockBalance;
 use App\Services\Item\ItemPriceService;
+use Core\Infrastructure\Persistence\Models\ConsignmentNote;
+use Core\Infrastructure\Persistence\Models\Point;
+use Core\Infrastructure\Persistence\Models\StockBalance;
 use Illuminate\Support\Facades\DB;
 
 class ConsignmentNoteService

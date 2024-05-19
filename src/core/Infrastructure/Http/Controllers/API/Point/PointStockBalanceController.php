@@ -2,8 +2,8 @@
 
 namespace Core\Infrastructure\Http\Controllers\API\Point;
 
-use App\Models\Point;
 use Core\Infrastructure\Http\Controllers\API\ApiController;
+use Core\Infrastructure\Persistence\Models\Point;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class PointStockBalanceController extends ApiController

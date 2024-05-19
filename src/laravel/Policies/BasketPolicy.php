@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
-use App\Models\Basket;
-use App\Models\Item;
-use App\Models\User;
+use Core\Infrastructure\Persistence\Models\Basket;
+use Core\Infrastructure\Persistence\Models\Item;
+use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BasketPolicy

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Core\Infrastructure\Persistence\Models;
 
 use App\Traits\UsesUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

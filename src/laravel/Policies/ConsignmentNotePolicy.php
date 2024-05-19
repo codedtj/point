@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 use App\Enum\ConsignmentNoteStatus;
-use App\Models\ConsignmentNote;
-use App\Models\Item;
-use App\Models\User;
+use Core\Infrastructure\Persistence\Models\ConsignmentNote;
+use Core\Infrastructure\Persistence\Models\Item;
+use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ConsignmentNotePolicy

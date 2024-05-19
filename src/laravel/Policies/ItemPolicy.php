@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
-use App\Models\ConsignmentNote;
-use App\Models\User;
-use App\Models\Item;
+use Core\Infrastructure\Persistence\Models\ConsignmentNote;
+use Core\Infrastructure\Persistence\Models\Item;
+use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ItemPolicy

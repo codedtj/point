@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Core\Infrastructure\Persistence\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -12,7 +12,7 @@ class Role extends Model
         parent::boot();
 
         Relation::morphMap([
-            'user' => 'App\Models\User'
+            'user' => 'Core\Infrastructure\Persistence\Models\User'
         ]);
     }
 

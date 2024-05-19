@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Models\Item;
-use App\Models\Point;
-use App\Models\Price;
+use Core\Infrastructure\Persistence\Models\Item;
+use Core\Infrastructure\Persistence\Models\Point;
+use Core\Infrastructure\Persistence\Models\Price;
 
 class PriceRepository
 {

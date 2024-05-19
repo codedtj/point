@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Point;
+use Core\Infrastructure\Persistence\Models\Point;
 use Illuminate\Database\Seeder;
 
 class PointSeeder extends Seeder

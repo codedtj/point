@@ -11,7 +11,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class StockBalance extends Resource
 {
-    public static string $model = \App\Models\StockBalance::class;
+    public static string $model = \Core\Infrastructure\Persistence\Models\StockBalance::class;
 
     public static function label(): string
     {

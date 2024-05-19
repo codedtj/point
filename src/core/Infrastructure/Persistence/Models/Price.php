@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Core\Infrastructure\Persistence\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

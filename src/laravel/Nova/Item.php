@@ -19,9 +19,9 @@ class Item extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Item>
+     * @var class-string<\Core\Infrastructure\Persistence\Models\Item>
      */
-    public static $model = \App\Models\Item::class;
+    public static $model = \Core\Infrastructure\Persistence\Models\Item::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
