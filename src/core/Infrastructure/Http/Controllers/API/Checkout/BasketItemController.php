@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API\Checkout;
+namespace Core\Infrastructure\Http\Controllers\API\Checkout;
 
-use App\Http\Controllers\API\ApiController;
 use App\Models\Basket;
-use Illuminate\Contracts\Database\Query\Builder;
+use Core\Infrastructure\Http\Controllers\API\ApiController;
 use Illuminate\Database\Eloquent\Collection;
 
 class BasketItemController extends ApiController

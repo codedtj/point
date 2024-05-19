@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API\Category;
+namespace Core\Infrastructure\Http\Controllers\API\Category;
 
-use App\Http\Controllers\API\ApiController;
 use App\Models\Category;
+use Core\Infrastructure\Http\Controllers\API\ApiController;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class CategoryController extends ApiController

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API\Checkout;
+namespace Core\Infrastructure\Http\Controllers\API\Checkout;
 
 use App\Enum\BasketStatus;
-use App\Http\Controllers\API\ApiController;
 use App\Models\Basket;
+use Core\Infrastructure\Http\Controllers\API\ApiController;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 

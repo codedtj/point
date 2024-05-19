@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API\Item;
+namespace Core\Infrastructure\Http\Controllers\API\Item;
 
-use App\Http\Controllers\API\ApiController;
 use App\Models\Item;
+use Core\Infrastructure\Http\Controllers\API\ApiController;
 
 class ItemController extends ApiController
 {

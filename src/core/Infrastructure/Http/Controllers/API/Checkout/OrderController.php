@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\API\Checkout;
+namespace Core\Infrastructure\Http\Controllers\API\Checkout;
 
 use App\Enum\BasketStatus;
 use App\Enum\OrderStatus;
-use App\Http\Controllers\API\ApiController;
 use App\Models\Basket;
 use App\Models\Order;
 use App\Models\User;
 use App\Services\Order\OrderService;
+use Core\Infrastructure\Http\Controllers\API\ApiController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
