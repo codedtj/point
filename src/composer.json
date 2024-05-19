@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
+            "App\\": "laravel/",
             "Core\\": "core/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
