@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Domain\Enum;
+namespace Core\Domain\Enums;
 
 enum Unit: string
 {

@@ -3,8 +3,8 @@
 namespace App\Services\ConsignmentNote;
 
 use App\Services\Item\ItemPriceService;
-use Core\Domain\Enum\ConsignmentNoteStatus;
-use Core\Domain\Enum\ConsignmentNoteType;
+use Core\Domain\Enums\ConsignmentNoteStatus;
+use Core\Domain\Enums\ConsignmentNoteType;
 use Core\Infrastructure\Persistence\Models\ConsignmentNote;
 use Core\Infrastructure\Persistence\Models\Point;
 use Core\Infrastructure\Persistence\Models\StockBalance;

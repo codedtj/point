@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use Core\Domain\Enum\ConsignmentNoteStatus;
+use Core\Domain\Enums\ConsignmentNoteStatus;
 use Core\Infrastructure\Persistence\Models\ConsignmentNote;
 use Core\Infrastructure\Persistence\Models\Item;
 use Core\Infrastructure\Persistence\Models\User;

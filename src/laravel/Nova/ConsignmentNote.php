@@ -3,8 +3,8 @@
 namespace App\Nova;
 
 use App\Nova\Actions\Export\DownloadExcel;
-use Core\Domain\Enum\ConsignmentNoteStatus;
-use Core\Domain\Enum\ConsignmentNoteType;
+use Core\Domain\Enums\ConsignmentNoteStatus;
+use Core\Domain\Enums\ConsignmentNoteType;
 use Core\Infrastructure\Persistence\Models\ConsignmentNote as ConsignmentNoteModel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;

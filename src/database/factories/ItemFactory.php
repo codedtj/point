@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Helpers\Enum;
-use Core\Domain\Enum\Unit;
+use Core\Domain\Enums\Unit;
 use Core\Infrastructure\Persistence\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;

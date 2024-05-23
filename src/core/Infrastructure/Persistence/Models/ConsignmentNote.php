@@ -2,8 +2,8 @@
 
 namespace Core\Infrastructure\Persistence\Models;
 
-use Core\Domain\Enum\ConsignmentNoteStatus;
-use Core\Domain\Enum\ConsignmentNoteType;
+use Core\Domain\Enums\ConsignmentNoteStatus;
+use Core\Domain\Enums\ConsignmentNoteType;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

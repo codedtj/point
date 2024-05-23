@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Helpers\Enum;
-use Core\Domain\Enum\BasketStatus;
+use Core\Domain\Enums\BasketStatus;
 use Core\Infrastructure\Persistence\Models\Basket;
 use Core\Infrastructure\Persistence\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

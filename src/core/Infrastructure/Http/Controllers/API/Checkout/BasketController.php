@@ -2,7 +2,7 @@
 
 namespace Core\Infrastructure\Http\Controllers\API\Checkout;
 
-use Core\Domain\Enum\BasketStatus;
+use Core\Domain\Enums\BasketStatus;
 use Core\Infrastructure\Http\Controllers\API\ApiController;
 use Core\Infrastructure\Persistence\Models\Basket;
 use Illuminate\Contracts\Pagination\Paginator;

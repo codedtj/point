@@ -4,7 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Actions\Export\DownloadExcel;
 use App\Nova\Actions\Order\CompleteOrder;
-use Core\Domain\Enum\OrderStatus;
+use Core\Domain\Enums\OrderStatus;
 use Core\Infrastructure\Persistence\Models\Order as OrderModel;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;

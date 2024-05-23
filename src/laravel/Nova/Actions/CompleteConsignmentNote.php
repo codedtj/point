@@ -3,7 +3,7 @@
 namespace App\Nova\Actions;
 
 use App\Services\ConsignmentNote\ConsignmentNoteService;
-use Core\Domain\Enum\ConsignmentNoteStatus;
+use Core\Domain\Enums\ConsignmentNoteStatus;
 use Core\Infrastructure\Persistence\Models\ConsignmentNote;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
