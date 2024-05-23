@@ -2,7 +2,7 @@
 
 namespace Core\Infrastructure\Persistence\Models;
 
-use App\Enum\OrderStatus;
+use Core\Domain\Enum\OrderStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**

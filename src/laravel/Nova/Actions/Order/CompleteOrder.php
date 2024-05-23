@@ -2,8 +2,8 @@
 
 namespace App\Nova\Actions\Order;
 
-use App\Enum\OrderStatus;
 use App\Services\Order\OrderService;
+use Core\Domain\Enum\OrderStatus;
 use Core\Infrastructure\Persistence\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;

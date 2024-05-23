@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Services\Order;
 
-use App\Enum\OrderStatus;
 use App\Services\Order\OrderService;
+use Core\Domain\Enum\OrderStatus;
 use Core\Infrastructure\Persistence\Models\Basket;
 use Core\Infrastructure\Persistence\Models\ConsignmentNote;
 use Core\Infrastructure\Persistence\Models\Item;

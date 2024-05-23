@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enum;
+namespace Core\Domain\Enum;
 
 enum ConsignmentNoteType: int
 {

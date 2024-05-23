@@ -2,7 +2,7 @@
 
 namespace Core\Infrastructure\Persistence\Models;
 
-use App\Enum\BasketStatus;
+use Core\Domain\Enum\BasketStatus;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

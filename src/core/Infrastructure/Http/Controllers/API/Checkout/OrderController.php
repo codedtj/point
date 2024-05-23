@@ -2,9 +2,9 @@
 
 namespace Core\Infrastructure\Http\Controllers\API\Checkout;
 
-use App\Enum\BasketStatus;
-use App\Enum\OrderStatus;
 use App\Services\Order\OrderService;
+use Core\Domain\Enum\BasketStatus;
+use Core\Domain\Enum\OrderStatus;
 use Core\Infrastructure\Http\Controllers\API\ApiController;
 use Core\Infrastructure\Persistence\Models\Basket;
 use Core\Infrastructure\Persistence\Models\Order;

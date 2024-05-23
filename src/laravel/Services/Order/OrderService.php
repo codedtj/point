@@ -4,14 +4,14 @@ namespace App\Services\Order;
 
 use App\Data\Basket\BasketItem;
 use App\Data\Basket\PointBasketItemCollection;
-use App\Enum\ConsignmentNoteStatus;
-use App\Enum\ConsignmentNoteType;
-use App\Enum\OrderStatus;
 use App\Repositories\ConsignmentNoteRepository;
 use App\Repositories\PointRepository;
 use App\Repositories\StockBalanceRepository;
 use App\Services\ConsignmentNote\ConsignmentNoteService;
 use App\Services\Item\ItemPriceService;
+use Core\Domain\Enum\ConsignmentNoteStatus;
+use Core\Domain\Enum\ConsignmentNoteType;
+use Core\Domain\Enum\OrderStatus;
 use Core\Infrastructure\Persistence\Models\ConsignmentNote;
 use Core\Infrastructure\Persistence\Models\Item;
 use Core\Infrastructure\Persistence\Models\Order;

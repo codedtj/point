@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
-use App\Enum\Unit;
 use App\Nova\Actions\Export\DownloadExcel;
+use Core\Domain\Enum\Unit;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
