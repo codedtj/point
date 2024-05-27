@@ -3,17 +3,22 @@
 namespace Core\Domain\Factories;
 
 use Core\Domain\Entities\Point;
+use Core\Domain\Traits\SetTimestamps;
+use Core\Domain\Traits\SetUserStamps;
 use DateTimeImmutable;
 
 class PointFactory
 {
+    use SetTimestamps;
+    use SetUserStamps;
+
     public function create(
-        ?string            $id,
-        string             $name,
-        ?string            $code = null,
-        ?string            $createdById = null,
-        ?string            $updatedById = null,
-        ?string            $deletedById = null,
+        ?string $id,
+        string $name,
+        ?string $code = null,
+        ?string $createdById = null,
+        ?string $updatedById = null,
+        ?string $deletedById = null,
         ?DateTimeImmutable $createdAt = null,
         ?DateTimeImmutable $updatedAt = null,
         ?DateTimeImmutable $deletedAt = null,
@@ -23,26 +28,10 @@ class PointFactory
         $point->setId($id);
         $point->setName($name);
         $point->setCode($code);
-        if ($createdById !== null) {
-            $point->setCreatedById($createdById);
-        }
-        if ($updatedById !== null) {
-            $point->setUpdatedById($updatedById);
-        }
-        if ($deletedById !== null) {
-            $point->setDeletedById($deletedById);
-        }
-        if ($createdAt === null) {
-            $createdAt = new DateTimeImmutable();
-        }
 
-        if ($updatedAt === null) {
-            $updatedAt = new DateTimeImmutable();
-        }
+        $this->setUserStamps($point, $createdById, $updatedById, $deletedById);
+        $this->setTimestamps($point, $createdAt, $updatedAt, $deletedAt);
 
-        $point->setCreatedAt($createdAt);
-        $point->setUpdatedAt($updatedAt);
-        $point->setDeletedAt($deletedAt);
         return $point;
     }
 }

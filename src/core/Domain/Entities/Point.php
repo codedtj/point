@@ -5,7 +5,7 @@ namespace Core\Domain\Entities;
 use Core\Domain\Traits\Timestamps;
 use Core\Domain\Traits\UserStamps;
 
-class Point
+class Point implements Timestampable, Userstampable
 {
     use UserStamps;
     use Timestamps;

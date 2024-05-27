@@ -5,9 +5,12 @@ namespace Core\Infrastructure\Persistence\Mappers;
 use Core\Domain\Entities\Point;
 use Core\Domain\Factories\PointFactory;
 use Core\Infrastructure\Persistence\Models\Point as PointModel;
+use Core\Infrastructure\Persistence\Traits\ModelTimestamps;
 
 class PointMapper
 {
+    use ModelTimestamps;
+
     public function __construct(private readonly PointFactory $pointFactory)
     {
     }
@@ -36,9 +39,7 @@ class PointMapper
         $model->created_by = $point->getCreatedById();
         $model->updated_by = $point->getUpdatedById();
         $model->deleted_by = $point->getDeletedById();
-        $model->created_at = $point->getCreatedAt();
-        $model->updated_at = $point->getUpdatedAt();
-        $model->deleted_at = $point->getDeletedAt();
+        $this->setTimestamps($point, $model);
         return $model;
     }
 }
